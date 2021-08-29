@@ -72,7 +72,7 @@ const VagaForm: React.FC<any> = ({
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: 20 }}>
           <Form.Item>
             <Button type="primary" htmlType="submit" >Salvar</Button>
-            <Button type="primary" style={{ marginLeft: 20, background: 'red' }}>Excluir</Button>
+            <Button type="primary" style={{ marginLeft: 20}} danger>Excluir</Button>
           </Form.Item>
         </div>
       </div>

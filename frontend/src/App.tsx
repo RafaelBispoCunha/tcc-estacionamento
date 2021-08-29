@@ -2,6 +2,8 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { Layout } from 'antd'
 import MenuHorizontal from './components/Menu'
+import Routes from './routes'
+
 const App = () => {
 
   const { Header, Content, Footer } = Layout;
@@ -29,7 +31,7 @@ const App = () => {
               // overflowY: 'hidden',
               //overflowX: 'scroll'
             }}>
-
+              <Routes />
             </Content>
           </Layout>
 

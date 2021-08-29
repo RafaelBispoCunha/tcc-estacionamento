@@ -4,3 +4,12 @@ export interface IVaga{
    numero: number,
    status:  boolean,
 }
+
+export interface IVeiculo{
+   placa: string,
+   modelo: string,
+   marca:string,
+   cor:string,
+   anoModelo:number, 
+   situacao: string,
+}

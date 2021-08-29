@@ -2,19 +2,20 @@ import React from 'react';
 import { Select, Form, Input } from 'antd';
 import { Button } from 'antd';
 import { useEffect } from 'react';
-
+import { IVaga, IVeiculo } from '../../model/models';
 
 interface IEntradaFormProps {
   onSubmit: (data: any) => void;
-  data?: any[];
+  data?: IVaga[];
   onSearchVehicle: (data: any) => void;
+  veiculo: IVeiculo | undefined;
 }
 
 const EntradaForm: React.FC<IEntradaFormProps> = ({
   onSubmit = () => { },
   data,
   onSearchVehicle,
-
+  veiculo
 
 }) => {
 
@@ -22,7 +23,7 @@ const EntradaForm: React.FC<IEntradaFormProps> = ({
     console.log('Failed:', errorInfo);
   };
 
-  const [form] = Form.useForm();
+  const [form] = Form.useForm<IVeiculo>();
 
 
   const handleChange = (value: any) => {
@@ -30,8 +31,21 @@ const EntradaForm: React.FC<IEntradaFormProps> = ({
   }
 
   useEffect(() => {
-  });
 
+    if (veiculo) {
+
+      form.setFieldsValue({
+        placa: veiculo.placa,
+        modelo: veiculo.modelo,
+        marca: veiculo.marca,
+        cor: veiculo.cor,
+        anoModelo: Number(veiculo.anoModelo),
+        situacao: veiculo.situacao,
+
+      })
+    }
+
+  })
   const { Search } = Input;
   const { Option } = Select;
 
@@ -64,9 +78,7 @@ const EntradaForm: React.FC<IEntradaFormProps> = ({
             label="Placa"
             name="placa"
             style={{ margin: '0 10px' }}
-          // initialValue={veiculo?.placa}
-
-
+            initialValue={veiculo?.placa}
           >
             <Input disabled />
           </Form.Item>
@@ -74,30 +86,27 @@ const EntradaForm: React.FC<IEntradaFormProps> = ({
             label="Modelo"
             name="modelo"
             style={{ margin: '0 10px' }}
-
-
-
-
+            initialValue={veiculo?.modelo}
           >
             <Input disabled />
           </Form.Item>
+
           <Form.Item
             label="Marca"
             name="marca"
             style={{ margin: '0 10px' }}
-
-
-
+            initialValue={veiculo?.marca}
           >
             <Input disabled />
           </Form.Item>
+
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'row' }}>
           <Form.Item
             label="Cor"
             name="cor"
             style={{ margin: '0 10px' }}
-
+            initialValue={veiculo?.cor}
 
 
           >
@@ -107,7 +116,7 @@ const EntradaForm: React.FC<IEntradaFormProps> = ({
             label="Ano do Modelo"
             name="anoModelo"
             style={{ margin: '0 10px' }}
-
+            initialValue={veiculo?.anoModelo}
 
 
           >
@@ -117,7 +126,7 @@ const EntradaForm: React.FC<IEntradaFormProps> = ({
             label="Situação"
             name="situacao"
             style={{ margin: '0 10px' }}
-
+            initialValue={veiculo?.situacao === undefined ? '' : veiculo?.situacao}
           //rules={[{ required: true, message: 'Please input your username!' }]}
 
           >
@@ -128,12 +137,12 @@ const EntradaForm: React.FC<IEntradaFormProps> = ({
             label="Vaga"
             name="vaga"
             style={{ margin: '0 10px' }}
-          //initialValue={operation === 'UPDATE' ? defaultValues[0].cpf :''}
+          //initialValue={operation === 'UPDATE' ? defaultValues[0].vaga :''}
           //rules={[{ required: true, message: 'Please input your username!' }]}
 
           >
             <Select style={{ width: 120 }} onChange={handleChange}>
-               <Option value="0">Sem vagas Registradas</Option>
+              <Option value="0">Sem vagas Registradas</Option>
             </Select>
           </Form.Item>
 

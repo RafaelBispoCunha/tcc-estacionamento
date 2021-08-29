@@ -16,7 +16,7 @@ const VagaPage = () => {
       setVagas(response.data)
     })
     if(vagas?.length === 0) setIsForm(true)
-  }, [vagas])
+  }, [vagas, VagaService])
 
   const onSubmit = (values: any) => {
 

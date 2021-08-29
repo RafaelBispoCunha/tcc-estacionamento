@@ -2,36 +2,81 @@ import React, { useState, useEffect } from 'react';
 import { Breadcrumb } from 'antd';
 import VagaForm from './VagaForm'
 import VagaTable from './VagaTable'
+import { IVaga  }from '../../model/models'
+import VagaService from '../../services/VagaService';
 
 const VagaPage = () => {
 
+  const [vagas, setVagas] = useState<IVaga[] | undefined>(undefined)
   const [isForm, setIsForm] = useState(false);
   const [operation, setOperation] = useState('CREATE')
 
   useEffect(() => {
-  })
+    VagaService.getAll().then(response => {
+      setVagas(response.data)
+    })
+    if(vagas?.length === 0) setIsForm(true)
+  }, [vagas])
 
   const onSubmit = (values: any) => {
-    console.log(values)
+
+    if (operation === 'CREATE') {
+      VagaService.create(values).then(response => {
+        VagaService.getAll().then(response => {
+          setVagas(response.data);
+
+        })
+        setIsForm(false)
+      }).catch(e => {
+        console.log(e)
+        setVagas(undefined);
+      })
+    } else {
+      VagaService.update(values).then(response => {
+        VagaService.getAll().then(response => {
+          setVagas(response.data);
+
+        })
+        setIsForm(false)
+        setOperation('CREATE')
+      }).catch(e => {
+        setVagas(undefined);
+      })
+    }
   }
 
   const onDelete = (values: any) => {
-    console.log(values)
+    VagaService.delete(values).then(response => {
+      console.log(response.data);
+      setIsForm(false);
+      VagaService.getAll().then(response => {
+        setVagas(response.data);
+        setOperation('CREATE');
+      })
+    }).catch(e => {
+      setVagas(undefined);
+    })
   }
 
   const onAlter = (values: any) => {
-    console.log(values)
+    setOperation('UPDATE');
+    VagaService.findById(values).then(response => {
+      setIsForm(true);
+      setVagas(response.data);
+    }).catch(e => {
+      setVagas(undefined);
+    })
   }
 
   const form = isForm ?
     <VagaForm
       onSubmit={onSubmit}
       operation={operation}
-      defaultValues={[]}
+      defaultValues={vagas}
       isForm={() => setIsForm(true)}
     />
     : <VagaTable
-      data={[]}
+      data={vagas}
       onDelete={onDelete}
       onAlter={onAlter}
     />
@@ -39,12 +84,12 @@ const VagaPage = () => {
   return (
     <>
       <Breadcrumb style={{ margin: '16px 0' }}>
-        <Breadcrumb.Item ><a onClick={() => {
+        <Breadcrumb.Item >
+        <a onClick={() => {
           setIsForm(false);
           setOperation('CREATE')
         }}
-        >
-          Vagas</a>
+        >Vagas</a>
         </Breadcrumb.Item>
         <Breadcrumb.Item><a onClick={() => setIsForm(true)}>Nova Vaga</a></Breadcrumb.Item>
       </Breadcrumb>

@@ -1,19 +1,37 @@
 {
-  "posts": [
+  "vaga": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "andar": 0,
+      "numeroVaga": "",
+      "status": "Disponivel"
     }
   ],
-  "comments": [
+  "veiculos": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "placa": "PLC-DHC",
+      "modelo": "TESTE A",
+      "marca": "TESTE",
+      "cor": "Azul",
+      "anoModelo": "2021",
+      "situacao": "Normal"
+    },
+    {
+      "placa": "PLD-DHD",
+      "modelo": "TESTE A",
+      "marca": "TESTE",
+      "cor": "Vermelho",
+      "anoModelo": "2021",
+      "situacao": "Normal"
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "estacionados": [
+    {
+      "placa": "PLC-DHC",
+      "modelo": "TESTE A",
+      "marca": "TESTE",
+      "andar": 0,
+      "numeroVaga": 2
+    }
+  ]
 }

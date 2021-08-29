@@ -53,13 +53,13 @@ const VagaForm: React.FC<any> = ({
             initialValue={operation === 'UPDATE' ? defaultValues[0].numeroVaga : ''}
             
           >
-            <InputNumber min={0} max={10} defaultValue={0} style={{ marginRight: 20 }}/>
+            <InputNumber min={0} max={10} defaultValue={1} style={{ marginRight: 20 }}/>
           </Form.Item>
 
           <Form.Item
-            label="Disponibilidade"
-            name="disponibilidade"
-            initialValue={operation === 'UPDATE' ? defaultValues[0].disponibilidade : 'Disponivel'}
+            label="Status"
+            name="status"
+            initialValue={operation === 'UPDATE' ? defaultValues[0].status : 'Disponivel'}
             style={{ width: 150}}
           
           >

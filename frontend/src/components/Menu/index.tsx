@@ -38,9 +38,9 @@ const MenuHorizontal = () => {
             </a>
          </Menu.Item>
 
-         <Menu.Item key="Vaga" icon={< CarOutlined />}>
+         <Menu.Item key="vagas" icon={< CarOutlined />}>
             Vagas
-            <a href="/vaga" >
+            <a href="/vagas" >
 
             </a>
          </Menu.Item>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Breadcrumb } from 'antd';
+import { Breadcrumb, Button } from 'antd';
 import VagaForm from './VagaForm'
 import VagaTable from './VagaTable'
 import { IVaga } from '../../model/models'
@@ -87,13 +87,13 @@ const VagaPage = () => {
     <>
       <Breadcrumb style={{ margin: '16px 0' }}>
         <Breadcrumb.Item >
-          <a onClick={() => {
+          <Button type="link"  onClick={() => {
             setIsForm(false);
             setOperation('CREATE')
           }}
-          >Vagas</a>
+          >Vagas</Button>
         </Breadcrumb.Item>
-        <Breadcrumb.Item><a onClick={() => setIsForm(true)}>Nova Vaga</a></Breadcrumb.Item>
+        <Breadcrumb.Item><Button type="link" onClick={() => setIsForm(true)} style={{color: "black"}}>Nova Vaga</Button></Breadcrumb.Item>
       </Breadcrumb>
       {form}
 

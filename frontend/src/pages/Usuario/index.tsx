@@ -1,9 +1,9 @@
-import React, { useEffect,useState } from 'react';
+import React, { useState } from 'react';
 import {  Breadcrumb } from 'antd';
-import FuncionarioForm from './FuncionarioForm';
-import FuncionarioTable from './FuncionarioTable';
+import UsuarioForm from './UsuarioForm';
+import UsuarioTable from './UsuarioTable';
 
-const FuncionarioPage = () =>{
+const UsuarioPage = () =>{
   const [isForm, setIsForm] = useState(false);
   const [data, setData] = useState([]);
   const [operation, setOperation ]= useState('CREATE')
@@ -11,6 +11,8 @@ const FuncionarioPage = () =>{
 
   const onSubmit = (values: any) =>{
     console.log( values);
+    setData([])
+    setOperation('CREATE')
   } 
 
   const onDelete = (values: any) =>{
@@ -23,12 +25,12 @@ const FuncionarioPage = () =>{
   
 
   const form =  isForm ? 
-    <FuncionarioForm 
+    <UsuarioForm 
       onSubmit={onSubmit} 
       operation={operation}
       defaultValues={data}
     /> 
-  : <FuncionarioTable 
+  : <UsuarioTable 
       data={data} 
       onDelete={onDelete}
       onAlter={onAlter}
@@ -36,8 +38,8 @@ const FuncionarioPage = () =>{
    return(
      <>
         <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item ><a onClick={() => setIsForm(false)}>Funcionario</a></Breadcrumb.Item>
-          <Breadcrumb.Item><a onClick={() => setIsForm(true)}>Novo Funcionario</a></Breadcrumb.Item>
+          <Breadcrumb.Item ><span onClick={() => setIsForm(false)}>Funcionario</span></Breadcrumb.Item>
+          <Breadcrumb.Item><span onClick={() => setIsForm(true)}>Novo Funcionario</span></Breadcrumb.Item>
         </Breadcrumb>
         {form}
        
@@ -45,4 +47,4 @@ const FuncionarioPage = () =>{
    )
 }
 
-export default FuncionarioPage;
+export default UsuarioPage;

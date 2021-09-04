@@ -13,3 +13,11 @@ export interface IVeiculo{
    anoModelo:number, 
    situacao: string,
 }
+
+export interface IEntrada{
+   id?: number;
+   veiculo: IVeiculo;
+   vaga: IVaga;
+   usuario: string;
+   dataHoraEntrada: string;
+}

@@ -1,36 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Select } from 'antd';
-import { Form, Input, Button, Breadcrumb } from 'antd';
-import { InfoCircleOutlined } from '@ant-design/icons';
+import { Form, Input, Button } from 'antd';
 
 
-type RequiredMark = boolean | 'optional';
-
-const FuncionarioForm: React.FC<any> = ({
+const UsuarioForm: React.FC<any> = ({
   onSubmit = () => { },
   operation,
   defaultValues
 }
 ) => {
 
-  const { Option } = Select;
-  const functionSub = () => {
-    alert("")
-  }
-  const onFinish = (values: any) => {
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
-  };
-
   const [form] = Form.useForm();
-  const [requiredMark, setRequiredMarkType] = useState<RequiredMark>('optional');
 
-  const onRequiredTypeChange = ({ requiredMarkValue }: { requiredMarkValue: RequiredMark }) => {
-    setRequiredMarkType(requiredMarkValue);
-  }
   return (
     <Form
       form={form}
@@ -38,7 +19,6 @@ const FuncionarioForm: React.FC<any> = ({
       name="basic"
       initialValues={{ remember: true }}
       onFinish={onSubmit}
-      onFinishFailed={onFinishFailed}
     >
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'row', width: '75%'}}>
@@ -138,4 +118,4 @@ const FuncionarioForm: React.FC<any> = ({
   )
 }
 
-export default FuncionarioForm;
+export default UsuarioForm;

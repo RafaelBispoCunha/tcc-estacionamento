@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Menu } from 'antd';
 import { 
    HomeOutlined,
@@ -64,10 +64,7 @@ const MenuHorizontal = () => {
          </Menu.Item>
 
          <Menu.Item key="sair" icon={<LogoutOutlined />}>
-            Sair
-            <a onClick={logout} >
-
-            </a>
+            <span onClick={logout}>Sair</span  >
          </Menu.Item>
       </Menu>
 

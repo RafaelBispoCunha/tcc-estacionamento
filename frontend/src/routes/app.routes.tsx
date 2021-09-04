@@ -5,7 +5,7 @@ import LayoutContent from '../components/Layout'
 import EntradaPage from '../pages/Entrada'
 import SaidaPage from '../pages/Saida'
 import VagasPage from '../pages/Vagas'
-import FuncionarioPage from './../pages/Funcionario';
+import UsuarioPage from '../pages/Usuario';
 
 
 const Routes = () => {
@@ -19,7 +19,7 @@ const Routes = () => {
             <Route exact path="/entrada" component={EntradaPage} />
             <Route exact path="/saida" component={SaidaPage} />
             <Route exact path="/vagas" component={VagasPage} />
-            <Route exact path="/funcionario" component={FuncionarioPage} />
+            <Route exact path="/usuario" component={UsuarioPage} />
 
 
 

@@ -1,18 +1,18 @@
-import { createContext, useContext } from 'react';
+import React from 'react';
 import { RootStore } from './RootStore'
 
-const StoreContext = createContext<RootStore>({} as RootStore);
+const StoreContext = React.createContext<RootStore>({} as RootStore);
 
 
 const RootProvider: React.FC = ({ children}) =>{
-   const rootStore = new RootStore();
+   
    return(
-      <StoreContext.Provider value={rootStore}>
+      <StoreContext.Provider value={new RootStore()}>
          {children}
       </StoreContext.Provider>
    )
 }
 
-const useStoreContext = () => useContext(StoreContext);
+const  useStoreContext = () => React.useContext(StoreContext);
 
-export { RootProvider, useStoreContext};
+export {RootProvider,  useStoreContext}

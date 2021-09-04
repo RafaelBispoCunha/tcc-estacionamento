@@ -2,8 +2,8 @@
   "compilerOptions": {
     "target": "es5",
     "lib": [
+      "ES6",
       "dom",
-      "dom.iterable",
       "esnext"
     ],
     "allowJs": true,
@@ -18,7 +18,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "outDir": "build/dist",
+    "rootDir": "./src",
+    "strictPropertyInitialization": false,
+    "experimentalDecorators": true,
   },
   "include": [
     "src"

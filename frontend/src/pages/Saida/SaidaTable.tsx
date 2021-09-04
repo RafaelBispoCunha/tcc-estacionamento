@@ -32,7 +32,7 @@ const SaidaTable: React.FC<TableHospedeProps> = ({data}) =>{
      {
        title: 'Modelo',
        dataIndex: 'modelo',
-       render: (text: string) => <a>{text}</a>,
+       render: (text: string) => <p>{text}</p>,
      },
      {
        title: 'Marca',

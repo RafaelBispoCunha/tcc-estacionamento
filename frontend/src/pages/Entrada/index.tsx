@@ -1,32 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { observer } from 'mobx-react';
 import { Breadcrumb } from 'antd';
 import EntradaForm from './EntradaForm';
 import EntradaTable from './EntradaTable';
-import { IVaga, IVeiculo } from '../../model/models'
-import VagaService from '../../services/VagaService';
+import { IVeiculo } from '../../model/models'
 import VeiculoService from '../../services/VeiculoService';
+import { EntradaStore } from '../../store/EntradaStore';
 
-const EntradaPage  = () => {
+const EntradaPage: React.FC = observer(() => {
 
-  const [data, setData] = useState<IVaga[] | undefined>(undefined)
+  const entrada = new EntradaStore();
+
   const [isForm, setIsForm] = useState(false);
-  const [veiculo, setVeiculo] = useState<IVeiculo| undefined>(undefined)
-  const [estacionados, setEstacionados] = useState<any[] | undefined>(undefined)
+  const [veiculo, setVeiculo] = useState<IVeiculo | undefined>(undefined)
+
 
   useEffect(() => {
-    VagaService.getAll().then(response => {
-      setData(response.data);
-    }).catch(e => {
-      setData(undefined);
-    })
-
-    VeiculoService.getAll().then(response => {
-      setEstacionados(response.data);
-    }).catch(e => {
-      console.log(e)
-      setEstacionados(undefined);
-    })
-  },[VagaService,VeiculoService ]);
+    entrada.getEntradas()
+    
+  });
 
   const onSubmit = (values: any) => {
     const newData = {
@@ -38,10 +30,10 @@ const EntradaPage  = () => {
     }
     VeiculoService.create(newData)
     VeiculoService.getAll().then(response => {
-      setEstacionados(response.data);
+      
     }).catch(e => {
       console.log(e)
-      setEstacionados(undefined);
+      
     })
   }
 
@@ -50,12 +42,12 @@ const EntradaPage  = () => {
     console.log(value)
     VeiculoService.get(value).then(response => {
       console.log(response)
-      if(response.data) setVeiculo(response.data[0]);
-      
+      if (response.data) setVeiculo(response.data);
+
 
     }).catch(e => {
       console.log(e)
-      setVeiculo(undefined);
+      
     })
   };
 
@@ -64,26 +56,26 @@ const EntradaPage  = () => {
     <div>
       <Breadcrumb style={{ margin: '16px 0' }}>
         <Breadcrumb.Item ><a href="entrada">Veiculos Estacionados</a></Breadcrumb.Item>
-        <Breadcrumb.Item><a onClick={() => setIsForm(true)}>Nova Entrada</a></Breadcrumb.Item>
+        <Breadcrumb.Item><span onClick={() => setIsForm(true)}>Nova Entrada</span></Breadcrumb.Item>
       </Breadcrumb>
 
 
 
       {/*  <VagaTable data={data}/>*/}
 
-      {isForm ? 
-      <EntradaForm 
-        onSubmit={onSubmit} 
-        data={data} 
-        onSearchVehicle={onSearchVehicle} 
-        veiculo={veiculo} 
-      />
-        : <EntradaTable 
-          data={estacionados} 
+      {isForm ?
+        <EntradaForm
+          onSubmit={onSubmit}
+          data={[]}
+          onSearchVehicle={onSearchVehicle}
+          veiculo={veiculo}
+        />
+        : <EntradaTable
+          data={entrada.entradas}
         />}
 
     </div>
   )
-}
+})
 
 export default EntradaPage;

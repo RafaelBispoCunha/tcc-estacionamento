@@ -6,7 +6,7 @@ import { IVaga, IVeiculo } from '../../model/models'
 import VagaService from '../../services/VagaService';
 import VeiculoService from '../../services/VeiculoService';
 
-const EntradaPage = () => {
+const EntradaPage  = () => {
 
   const [data, setData] = useState<IVaga[] | undefined>(undefined)
   const [isForm, setIsForm] = useState(false);

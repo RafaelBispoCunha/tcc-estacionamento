@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Breadcrumb } from 'antd';
 import VagaForm from './VagaForm'
 import VagaTable from './VagaTable'
-import { IVaga  }from '../../model/models'
+import { IVaga } from '../../model/models'
 import VagaService from '../../services/VagaService';
 
 const VagaPage = () => {
@@ -15,9 +15,11 @@ const VagaPage = () => {
     VagaService.getAll().then(response => {
       setVagas(response.data)
     })
-    if(vagas?.length === 0) setIsForm(true)
-  }, [vagas, VagaService])
-
+      .catch(e => {
+        setVagas(undefined);
+      })
+    if (vagas?.length === 0) setIsForm(true)
+  }, [VagaService])
   const onSubmit = (values: any) => {
 
     if (operation === 'CREATE') {
@@ -85,11 +87,11 @@ const VagaPage = () => {
     <>
       <Breadcrumb style={{ margin: '16px 0' }}>
         <Breadcrumb.Item >
-        <a onClick={() => {
-          setIsForm(false);
-          setOperation('CREATE')
-        }}
-        >Vagas</a>
+          <a onClick={() => {
+            setIsForm(false);
+            setOperation('CREATE')
+          }}
+          >Vagas</a>
         </Breadcrumb.Item>
         <Breadcrumb.Item><a onClick={() => setIsForm(true)}>Nova Vaga</a></Breadcrumb.Item>
       </Breadcrumb>

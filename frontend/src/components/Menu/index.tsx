@@ -1,32 +1,36 @@
 import React, { useState } from 'react';
 import { Menu } from 'antd';
-import { HomeOutlined, CaretDownOutlined, CaretUpOutlined, CarOutlined, AreaChartOutlined, UserOutlined, LogoutOutlined } from '@ant-design/icons';
+import { 
+   HomeOutlined,
+   CaretDownOutlined, 
+   CaretUpOutlined, 
+   CarOutlined, 
+   AreaChartOutlined, 
+   UserOutlined, 
+   LogoutOutlined 
+} from '@ant-design/icons';
+
+import { useAuth } from '../../auth';
 
 const MenuHorizontal = () => {
 
-   const [current, setCurrent] = useState('home')
-
-   const handleClick = (e: any) => {
-      setCurrent(e.key)
-   };
+   const { logout } = useAuth();
 
    return (
 
       <Menu
-         onClick={handleClick}
-         selectedKeys={[current]}
          mode="horizontal"
          style={{ background: '#001529', color: '#FFF', height: 65, width: '100%' }}
       >
-         <Menu.Item key="home" icon={<HomeOutlined />}>
+         <Menu.Item key="home" icon={<HomeOutlined /> }>
             Home
-            <a href="/home" >
+            <a href="/" >
 
             </a>
          </Menu.Item>
-         <Menu.Item key="entrada" icon={<CaretDownOutlined />}>
+         <Menu.Item key="entrada" icon={<CaretDownOutlined /> }>
             Entrada
-            <a href="/entrada" >
+            <a href="/entrada">
 
             </a>
          </Menu.Item>
@@ -61,7 +65,7 @@ const MenuHorizontal = () => {
 
          <Menu.Item key="sair" icon={<LogoutOutlined />}>
             Sair
-            <a href="/sair" >
+            <a onClick={logout} >
 
             </a>
          </Menu.Item>

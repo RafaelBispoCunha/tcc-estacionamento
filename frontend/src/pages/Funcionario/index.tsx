@@ -8,9 +8,6 @@ const FuncionarioPage = () =>{
   const [data, setData] = useState([]);
   const [operation, setOperation ]= useState('CREATE')
 
-  useEffect(()=>{
-    
-  })
 
   const onSubmit = (values: any) =>{
     console.log( values);

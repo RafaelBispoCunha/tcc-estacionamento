@@ -1,18 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Table, Button, Tooltip, Modal } from 'antd';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 
-import { Table } from 'antd';
-
+import { IUsuario } from '../../model/models'
 
 interface TableFuncionarioProps {
-  data: any[];
+  data?: IUsuario[];
   onDelete: (value: any) => void
   onAlter: (value: any) => void
 }
 
-const UsuarioTable: React.FC<TableFuncionarioProps> = ({ data,
+const UsuarioTable: React.FC<TableFuncionarioProps> = ({
+  data,
   onDelete,
   onAlter
 }) => {
+
+  const [visible, setVisible] = useState(false);
+  const [modalText, setModalText] = useState('Deseja Excluir o usuário?');
+  const [confirmLoading, setConfirmLoading] = React.useState(false);
+  const [key, setKey] = useState<number>(0);
+
+  const handleOk = () => {
+    setModalText('Excluindo...');
+    setConfirmLoading(true);
+    onDelete(key)
+    setTimeout(() => {
+      setVisible(false);
+      setConfirmLoading(false);
+    }, 2000);
+  };
 
   const columns = [
     {
@@ -44,15 +61,37 @@ const UsuarioTable: React.FC<TableFuncionarioProps> = ({ data,
       render: (record: any) => {
         return (
           <>
-            <span onClick={() => onDelete(record.id)} style={{ marginRight: 5 }}>Delete</span>
-            <span onClick={() => onAlter(record)}>Alter</span>
+            <Tooltip placement="top" title="Editar">
+              <Button type="primary" style={{ marginRight: 10 }} onClick={() => onAlter(record.id!)} ><EditOutlined /></Button>
+            </Tooltip>
+            <Tooltip placement="top" title="Excluir" >
+              <Button type="primary" onClick={() => { setVisible(true); setKey(record.id!) }} danger ><DeleteOutlined /></Button>
+            </Tooltip>
           </>
         )
       }
     },
   ];
 
-  return (<Table columns={columns} dataSource={data} />)
+  return (
+    <>
+      <Table
+        columns={columns}
+        dataSource={data}
+      />
+
+      <Modal
+        title="Excluir Usuário"
+        visible={visible}
+        onOk={handleOk}
+        confirmLoading={confirmLoading}
+        onCancel={() => setVisible(false)}
+      >
+        <p>{modalText}</p>
+      </Modal>
+    </>
+  )
+
 }
 
 export default UsuarioTable;

@@ -21,3 +21,14 @@ export interface IEntrada{
    usuario: string;
    dataHoraEntrada: string;
 }
+
+export interface IUsuario{
+   id?: number;
+   nome: string;
+   cpf: string;
+   email: string;
+   telefone: string;
+   nivelAcesso: string;
+   senha: string;
+   dataHoraCadastro: string;
+}

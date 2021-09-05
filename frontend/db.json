@@ -70,5 +70,17 @@
       "usuario": "teste",
       "dataHoraEntrada": "01/01/2021 12:00:00"
     }
+  ],
+  "usuario": [
+    {
+      "id": 1,
+      "nome": "TESTE",
+      "cpf": "TESTE",
+      "email": "TESTE",
+      "telefone": "TESTE",
+      "nivelAcesso": "ADMIN",
+      "senha": "TESTE",
+      "senha2": "TESTE"
+    }
   ]
 }

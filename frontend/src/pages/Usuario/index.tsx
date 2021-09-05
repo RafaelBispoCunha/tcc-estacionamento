@@ -1,50 +1,95 @@
-import React, { useState } from 'react';
-import {  Breadcrumb } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Breadcrumb } from 'antd';
 import UsuarioForm from './UsuarioForm';
 import UsuarioTable from './UsuarioTable';
+import { useStoreContext } from '../../store/'
+import { IUsuario } from '../../model/models'
+import { ButtonLink } from './style'
 
-const UsuarioPage = () =>{
+const UsuarioPage = () => {
+  const { usuarioStore } = useStoreContext();
+
+
+  const [usuario, setUsuario] = useState<IUsuario | undefined>(undefined)
+  const [usuarios, setUsuarios] = useState<IUsuario[] | undefined>(undefined)
   const [isForm, setIsForm] = useState(false);
-  const [data, setData] = useState([]);
-  const [operation, setOperation ]= useState('CREATE')
+  const [operation, setOperation] = useState('CREATE')
 
+  useEffect(() => {
+    usuarioStore.getUsuarios().then(e => {
+      setUsuarios(usuarioStore.usuarios)
+    })
+  }, [usuarioStore])
 
-  const onSubmit = (values: any) =>{
-    console.log( values);
-    setData([])
-    setOperation('CREATE')
-  } 
+  const onSubmit = (values: any) => {
 
-  const onDelete = (values: any) =>{
-    console.log( values);
-  } 
+    if (operation === 'CREATE') {
+      usuarioStore.postUsuario(values).then(response => {
+        usuarioStore.getUsuarios().then(response => {
+          setUsuarios(usuarioStore.usuarios)
+          setIsForm(false)
+        })
+      }).catch(e => {
+        console.log(e)
+        setUsuarios(undefined);
+      })
+    } else {
+      usuarioStore.putUsuario(values).then(response => {
+        usuarioStore.getUsuarios().then(response => {
+          setUsuarios(usuarioStore.usuarios)
 
-  const onAlter = (values: any) =>{
-    console.log( values);
-  } 
-  
+        })
+        setIsForm(false)
+        setOperation('CREATE')
+      }).catch(e => {
+        setUsuarios(undefined);
+      })
+    }
+  }
 
-  const form =  isForm ? 
-    <UsuarioForm 
-      onSubmit={onSubmit} 
+  const onDelete = (values: any) => {
+    usuarioStore.deleteUsuario(values).then(response => {
+      setIsForm(false);
+      usuarioStore.getUsuarios().then(response => {
+        setUsuarios(usuarioStore.usuarios)
+        setOperation('CREATE');
+      })
+    }).catch(e => {
+      setUsuarios(undefined);
+    })
+  }
+
+  const onAlter = (values: any) => {
+    setOperation('UPDATE');
+    usuarioStore.getUsuario(values).then(response => {
+      setIsForm(true);
+      setUsuario(usuarioStore.usuario);
+    }).catch(e => {
+      setUsuarios(undefined);
+    })
+  }
+
+  const form = isForm ?
+    <UsuarioForm
+      onSubmit={onSubmit}
       operation={operation}
-      defaultValues={data}
-    /> 
-  : <UsuarioTable 
-      data={data} 
+      defaultValues={usuario}
+    />
+    : <UsuarioTable
+      data={usuarios}
       onDelete={onDelete}
       onAlter={onAlter}
     />
-   return(
-     <>
-        <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item ><span onClick={() => setIsForm(false)}>Usuário</span></Breadcrumb.Item>
-          <Breadcrumb.Item><span onClick={() => setIsForm(true)}>Novo Usuário</span></Breadcrumb.Item>
-        </Breadcrumb>
-        {form}
-       
-     </>
-   )
+  return (
+    <>
+      <Breadcrumb style={{ margin: '16px 0' }}>
+        <Breadcrumb.Item ><ButtonLink type="link" onClick={() => setIsForm(false)}>Usuário</ButtonLink></Breadcrumb.Item>
+        <Breadcrumb.Item><ButtonLink type="link" onClick={() => setIsForm(true)}>Novo Usuário</ButtonLink></Breadcrumb.Item>
+      </Breadcrumb>
+      {form}
+
+    </>
+  )
 }
 
 export default UsuarioPage;

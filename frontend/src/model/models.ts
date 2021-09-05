@@ -14,10 +14,23 @@ export interface IVeiculo{
    situacao: string,
 }
 
+/*
 export interface IEntrada{
    id?: number;
    veiculo: IVeiculo;
    vaga: IVaga;
+   usuario: string;
+   dataHoraEntrada: string;
+}
+*/
+
+export interface IEntrada{
+   id?: number;
+   placa: string,
+   modelo: string,
+   marca:string,
+   andar:number, 
+   numeroVaga: number,
    usuario: string;
    dataHoraEntrada: string;
 }

@@ -6,10 +6,10 @@ import { IEntrada } from '../../model/models'
 
 interface TableHospedeProps {
   data?: IEntrada[];
-  onSelectedRow:(value: string) => void;
+  onSelectedRow: (value: string) => void;
   selected?: IEntrada;
-  onSubmit:(value: any) => void
-  showModal:(value: any) => void
+  onSubmit: (value: any) => void
+  showModal: (value: any) => void
   visible: boolean
 }
 
@@ -33,7 +33,7 @@ const SaidaTable: React.FC<TableHospedeProps> = ({ data, onSelectedRow, selected
   }
 
   const buscarPlaca = (
-    <div style={{ display: 'flex', flexDirection: 'row', width: 250, marginRight: -140, marginLeft: -10 }}>
+    <div style={{ display: 'flex', flexDirection: 'row', width: 280, marginRight: -140, marginLeft: -10 }}>
       <label style={{ marginTop: 5 }}>Placa</label>
       <Input
         style={{ width: 170, marginLeft: 20, }}
@@ -41,9 +41,9 @@ const SaidaTable: React.FC<TableHospedeProps> = ({ data, onSelectedRow, selected
         value={placa}
         onChange={e => {
           const currValue = e.target.value;
-          setPlaca(currValue);
+          setPlaca(currValue.toUpperCase());
           const filteredData = data?.filter(entry =>
-            entry.id?.toString().includes(currValue)
+            entry.placa?.includes(currValue)
           );
           setDataSource(filteredData);
         }}
@@ -57,7 +57,8 @@ const SaidaTable: React.FC<TableHospedeProps> = ({ data, onSelectedRow, selected
       title: buscarPlaca,
       dataIndex: 'placa',
       render: (text: string, record: IEntrada) => {
-        return record.id
+        return record.placa
+
       }
     },
     {
@@ -70,16 +71,33 @@ const SaidaTable: React.FC<TableHospedeProps> = ({ data, onSelectedRow, selected
       dataIndex: 'marca',
     },
     {
-      title: 'Cor',
-      dataIndex: 'cor',
+      title: 'Andar',
+      dataIndex: 'andar',
+      render: (value: any, entrada: IEntrada, index: number) => {
+        //return entrada.vaga?.andar ? entrada.vaga?.andar : ''
+        return value
+      }
     },
     {
-      title: 'Ano do Modelo',
-      dataIndex: 'anoModelo',
+      title: 'N° Vaga',
+      dataIndex: 'numeroVaga',
+      render: (value: any, entrada: IEntrada, index: number) => {
+        //return entrada.vaga?.numeroVaga ? entrada.vaga?.numeroVaga : ''
+        return value
+      }
     },
     {
-      title: 'Situação',
-      dataIndex: 'situacao',
+      title: 'Data Hora da Entrada',
+      dataIndex: 'dataHoraEntrada',
+      with: '15%',
+      render: (value: any) => value
+
+    },
+    {
+      title: 'Usuário',
+      dataIndex: 'usuario',
+      render: (value: any) => value
+
     },
     {
       title: 'Pagamento',
@@ -88,7 +106,7 @@ const SaidaTable: React.FC<TableHospedeProps> = ({ data, onSelectedRow, selected
         return (
           <>
             <Tooltip placement="top" title="Pagar">
-              <Button type="primary" style={{ marginRight: 10 }} onClick={() =>onSelectedRow(record.id) } ><WalletOutlined /></Button>
+              <Button type="primary" style={{ marginRight: 10 }} onClick={() => onSelectedRow(record.id)} ><WalletOutlined /></Button>
             </Tooltip>
 
           </>
@@ -122,7 +140,7 @@ const SaidaTable: React.FC<TableHospedeProps> = ({ data, onSelectedRow, selected
                 <Form.Item
                   label="Placa"
                   name="placa"
-                  initialValue={selected?.id ? selected?.id : ''} 
+                  initialValue={selected?.id ? selected?.id : ''}
                   style={{ width: 130, marginRight: 20 }}
                 >
                   <Input disabled />
@@ -131,7 +149,7 @@ const SaidaTable: React.FC<TableHospedeProps> = ({ data, onSelectedRow, selected
                 <Form.Item
                   label="Modelo"
                   name="modelo"
-                  initialValue={selected?.id ? selected?.id : ''} 
+                  initialValue={selected?.id ? selected?.id : ''}
                   style={{ width: 130, marginRight: 20 }}
                 >
                   <Input disabled />
@@ -139,7 +157,7 @@ const SaidaTable: React.FC<TableHospedeProps> = ({ data, onSelectedRow, selected
                 <Form.Item
                   label="Marca"
                   name="marca"
-                  initialValue={selected?.id ? selected?.id : ''} 
+                  initialValue={selected?.id ? selected?.id : ''}
                   style={{ width: 130 }}
                 >
                   <Input disabled />
@@ -149,7 +167,7 @@ const SaidaTable: React.FC<TableHospedeProps> = ({ data, onSelectedRow, selected
                 <Form.Item
                   label="Andar"
                   name="andar"
-                  initialValue={selected?.id ? selected?.id : ''} 
+                  initialValue={selected?.id ? selected?.id : ''}
                   style={{ width: 130, marginRight: 20 }}
                 >
                   <Input disabled />
@@ -157,7 +175,7 @@ const SaidaTable: React.FC<TableHospedeProps> = ({ data, onSelectedRow, selected
                 <Form.Item
                   label="N° Vaga"
                   name="numeroVaga"
-                  initialValue={selected?.id ? selected?.id : ''} 
+                  initialValue={selected?.id ? selected?.id : ''}
                   style={{ width: 130 }}
                 >
                   <Input disabled />
@@ -175,7 +193,7 @@ const SaidaTable: React.FC<TableHospedeProps> = ({ data, onSelectedRow, selected
                 <Form.Item
                   label="Valor Parcela"
                   name="valorParcela"
-                  initialValue={selected?.id ? selected?.id : ''} 
+                  initialValue={selected?.id ? selected?.id : ''}
                   style={{ width: 130, marginRight: 20 }}
                 >
                   <Input disabled />
@@ -183,7 +201,7 @@ const SaidaTable: React.FC<TableHospedeProps> = ({ data, onSelectedRow, selected
                 <Form.Item
                   label="Valor Total"
                   name="valorTotal"
-                  initialValue={selected?.id ? selected?.id : ''} 
+                  initialValue={selected?.id ? selected?.id : ''}
                   style={{ width: 130 }}
 
                 >

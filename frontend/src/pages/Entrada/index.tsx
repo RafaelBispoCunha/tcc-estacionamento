@@ -5,6 +5,7 @@ import EntradaForm from './EntradaForm';
 import EntradaTable from './EntradaTable';
 import { IVeiculo, IVaga, IEntrada } from '../../model/models'
 import { useStoreContext } from '../../store/'
+import { ButtonLink } from './style'
 
 const EntradaPage: React.FC = observer(() => {
 
@@ -55,8 +56,8 @@ const EntradaPage: React.FC = observer(() => {
   return (
     <div>
       <Breadcrumb style={{ margin: '16px 0' }}>
-        <Breadcrumb.Item ><a href="entrada">Veiculos Estacionados</a></Breadcrumb.Item>
-        <Breadcrumb.Item><span onClick={() => setIsForm(true)}>Nova Entrada</span></Breadcrumb.Item>
+        <Breadcrumb.Item ><ButtonLink href="entrada" type="link">Veiculos Estacionados</ButtonLink></Breadcrumb.Item>
+        <Breadcrumb.Item><ButtonLink type="link" onClick={() => setIsForm(true)}>Nova Entrada</ButtonLink></Breadcrumb.Item>
       </Breadcrumb>
 
 

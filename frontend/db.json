@@ -37,110 +37,53 @@
       "situacao": "Normal"
     }
   ],
-  "estacionados": [
-    {
-      "placa": "PLC-DHC",
+  "entrada": [
+    { "id": 1,
+      "placa": "CAA-DHD",
       "modelo": "TESTE A",
       "marca": "TESTE",
       "andar": 0,
       "numeroVaga": 2,
       "usuario": "teste",
-      "dataHoraSaida": "01/01/2021 12:00:00"
-    }
-  ],
-  "entrada": [
-    {
-      "id": "1",
-      "veiculos": [
-        {
-          "placa": "PLD-DHD",
-          "modelo": "TESTE A",
-          "marca": "TESTE",
-          "cor": "Vermelho",
-          "anoModelo": "2021",
-          "situacao": "Normal"
-        }
-      ],
-      "vaga": [
-        {
-          "id": 1,
-          "andar": 0,
-          "numeroVaga": "1",
-          "status": "Disponivel"
-        }
-      ],
+      "dataHoraEntrada": "01/01/2021 12:00:00"
+    },
+    { "id": 2,
+      "placa": "BAA-DHC",
+      "modelo": "TESTE A",
+      "marca": "TESTE",
+      "andar": 0,
+      "numeroVaga": 2,
       "usuario": "teste",
       "dataHoraEntrada": "01/01/2021 12:00:00"
     },
-    {
-      "id": "2",
-      "veiculos": [
-        {
-          "placa": "PLD-DHD",
-          "modelo": "TESTE A",
-          "marca": "TESTE",
-          "cor": "Vermelho",
-          "anoModelo": "2021",
-          "situacao": "Normal"
-        }
-      ],
-      "vaga": [
-        {
-          "id": 1,
-          "andar": 0,
-          "numeroVaga": "1",
-          "status": "Disponivel"
-        }
-      ],
+    { "id": 3,
+      "placa": "PLC-DHD",
+      "modelo": "TESTE A",
+      "marca": "TESTE",
+      "andar": 0,
+      "numeroVaga": 2,
       "usuario": "teste",
       "dataHoraEntrada": "01/01/2021 12:00:00"
     },
-    {
-      "id": "3",
-      "veiculos": [
-        {
-          "placa": "PLD-DHD",
-          "modelo": "TESTE A",
-          "marca": "TESTE",
-          "cor": "Vermelho",
-          "anoModelo": "2021",
-          "situacao": "Normal"
-        }
-      ],
-      "vaga": [
-        {
-          "id": 1,
-          "andar": 0,
-          "numeroVaga": "1",
-          "status": "Disponivel"
-        }
-      ],
+    { "id": 4,
+      "placa": "PLC-DHB",
+      "modelo": "TESTE A",
+      "marca": "TESTE",
+      "andar": 0,
+      "numeroVaga": 2,
       "usuario": "teste",
       "dataHoraEntrada": "01/01/2021 12:00:00"
     },
-    {
-      "id": "4",
-      "veiculos": [
-        {
-          "placa": "PLD-DHD",
-          "modelo": "TESTE A",
-          "marca": "TESTE",
-          "cor": "Vermelho",
-          "anoModelo": "2021",
-          "situacao": "Normal"
-        }
-      ],
-      "vaga": [
-        {
-          "id": 1,
-          "andar": 0,
-          "numeroVaga": "1",
-          "status": "Disponivel"
-        }
-      ],
+    { "id": 5,
+      "placa": "PLC-DHA",
+      "modelo": "TESTE A",
+      "marca": "TESTE",
+      "andar": 0,
+      "numeroVaga": 2,
       "usuario": "teste",
       "dataHoraEntrada": "01/01/2021 12:00:00"
     }
+
   ],
   "usuario": [
     {

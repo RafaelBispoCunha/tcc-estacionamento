@@ -3,22 +3,28 @@ import { observer } from 'mobx-react';
 import { Breadcrumb } from 'antd';
 import EntradaForm from './EntradaForm';
 import EntradaTable from './EntradaTable';
-import { IVeiculo } from '../../model/models'
-import VeiculoService from '../../services/VeiculoService';
+import { IVeiculo, IVaga, IEntrada } from '../../model/models'
 import { useStoreContext } from '../../store/'
 
 const EntradaPage: React.FC = observer(() => {
 
-  const { entradaStore } = useStoreContext();
+  const { entradaStore, veiculoStore, vagaStore } = useStoreContext();
 
   const [isForm, setIsForm] = useState(false);
   const [veiculo, setVeiculo] = useState<IVeiculo | undefined>(undefined)
+  const [entradas, setEntradas] = useState<IEntrada[] | undefined>(undefined)
+  const [vagas, setVagas] = useState<IVaga[] | undefined>(undefined)
 
 
   useEffect(() => {
-    entradaStore.getEntradas()
-    
-  }, [entradaStore]);
+    entradaStore.getEntradas().then(e => {
+      setEntradas(entradaStore.entradas)
+    })
+    vagaStore.getVagas().then(e => {
+      setVagas(vagaStore.vagas)
+
+    })
+  }, [entradaStore, vagaStore]);
 
   const onSubmit = (values: any) => {
     const newData = {
@@ -28,26 +34,20 @@ const EntradaPage: React.FC = observer(() => {
       andar: 0,
       numeroVaga: 2
     }
-    VeiculoService.create(newData)
-    VeiculoService.getAll().then(response => {
-      
+    entradaStore.postEntrada(newData)
+
+    entradaStore.getEntradas().then(e => {
+      setEntradas(entradaStore.entradas)
+
     }).catch(e => {
       console.log(e)
-      
+
     })
   }
 
   const onSearchVehicle = (value: any) => {
-
-    console.log(value)
-    VeiculoService.get(value).then(response => {
-      console.log(response)
-      if (response.data) setVeiculo(response.data);
-
-
-    }).catch(e => {
-      console.log(e)
-      
+    veiculoStore.getVeiculo(value).then(e => {
+      setVeiculo(veiculoStore.veiculo)
     })
   };
 
@@ -66,12 +66,12 @@ const EntradaPage: React.FC = observer(() => {
       {isForm ?
         <EntradaForm
           onSubmit={onSubmit}
-          data={[]}
+          data={vagas}
           onSearchVehicle={onSearchVehicle}
           veiculo={veiculo}
         />
         : <EntradaTable
-          data={entradaStore.entradas}
+          data={entradas}
         />}
 
     </div>

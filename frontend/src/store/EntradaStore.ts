@@ -21,7 +21,7 @@ export class EntradaStore {
       this.loading = true;
       try {
          const { data } = await api.get<IEntrada[]>(`/entrada`);
-         console.log("DATA")
+         console.log("Entrada")
          console.log(data)
          runInAction(() => {
             this._entradas = data;
@@ -36,7 +36,7 @@ export class EntradaStore {
    }
 
    @action
-   postEntrada = async (params: IEntrada) => {
+   postEntrada = async (params: any) => {
       this.error = undefined
       this.loading = true;
       try {

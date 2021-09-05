@@ -1,14 +1,13 @@
 import React from 'react';
 import { Select, Form, Input } from 'antd';
 import { Button } from 'antd';
-import { useEffect } from 'react';
 import { IVaga, IVeiculo } from '../../model/models';
 
 interface IEntradaFormProps {
   onSubmit: (data: any) => void;
   data?: IVaga[];
   onSearchVehicle: (data: any) => void;
-  veiculo: IVeiculo | undefined;
+  veiculo?: IVeiculo;
 }
 
 const EntradaForm: React.FC<IEntradaFormProps> = ({
@@ -30,22 +29,7 @@ const EntradaForm: React.FC<IEntradaFormProps> = ({
     console.log(`selected ${value}`);
   }
 
-  useEffect(() => {
 
-    if (veiculo) {
-
-      form.setFieldsValue({
-        placa: veiculo.placa,
-        modelo: veiculo.modelo,
-        marca: veiculo.marca,
-        cor: veiculo.cor,
-        anoModelo: Number(veiculo.anoModelo),
-        situacao: veiculo.situacao,
-
-      })
-    }
-
-  })
   const { Search } = Input;
   const { Option } = Select;
 
@@ -88,7 +72,7 @@ const EntradaForm: React.FC<IEntradaFormProps> = ({
             style={{ margin: '0 10px' }}
             initialValue={veiculo?.modelo}
           >
-            <Input disabled />
+            <Input disabled value={veiculo?.modelo} />
           </Form.Item>
 
           <Form.Item
@@ -137,12 +121,18 @@ const EntradaForm: React.FC<IEntradaFormProps> = ({
             label="Vaga"
             name="vaga"
             style={{ margin: '0 10px' }}
+            
           //initialValue={operation === 'UPDATE' ? defaultValues[0].vaga :''}
           //rules={[{ required: true, message: 'Please input your username!' }]}
 
           >
-            <Select style={{ width: 120 }} onChange={handleChange}>
-              <Option value="0">Sem vagas Registradas</Option>
+            <Select style={{ width: 200 }} onChange={handleChange} defaultValue="0">
+            <Option  value="0">Selecione um vaga</Option>
+              {data?.map(vaga =>{
+                
+                return vaga.id ? <Option key={vaga.id!} value={vaga.id!}>Andar: {vaga.andar} - N° Vaga: {vaga.numeroVaga}</Option> : <Option  value="0">Sem vagas Registradas</Option>
+              })}
+              
             </Select>
           </Form.Item>
 

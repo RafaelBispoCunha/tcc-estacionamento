@@ -22,6 +22,16 @@ export interface IEntrada{
    dataHoraEntrada: string;
 }
 
+export interface ISaida{
+   id?: number;
+   veiculo: IVeiculo;
+   vaga: IVaga;
+   usuario: string;
+   valor: string
+   dataHoraSaida: string;
+}
+
+
 export interface IUsuario{
    id?: number;
    nome: string;

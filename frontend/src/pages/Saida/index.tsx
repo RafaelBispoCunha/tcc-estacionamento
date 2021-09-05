@@ -1,53 +1,63 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { InputNumber, Input } from 'antd';
-import { Button, Breadcrumb } from 'antd';
+import { Breadcrumb } from 'antd';
 import SaidaTable from './SaidaTable';
-import SaidaForm from './SaidaForm'
+
+import { IEntrada } from '../../model/models'
+import { useStoreContext } from '../../store/'
 
 const SaidaPage = () => {
 
+
+  const { entradaStore, saidaStore } = useStoreContext();
+  const [visible, setVisible] = useState(false);
+  const [entradas, setEntradas] = useState<IEntrada[] | undefined>(undefined)
+  const [entrada, setEntrada] = useState<IEntrada | undefined>(undefined)
+
+  useEffect(() => {
+    entradaStore.getEntradas()
+      .then(e => {
+        setEntradas(entradaStore.entradas)
+      })
+  }, [entradaStore])
+
   const onSubmit = (values: any) => {
-    console.log(values);
+    saidaStore.postSaida(values).then(e => {
+      setVisible(!visible)
+    })
+    entradaStore.getEntradas()
+      .then(e => {
+        setEntradas(entradaStore.entradas)
+      })
   }
 
-  const onChange = (value: any) => {
-    console.log('changed', value);
+  const onSelectedRow = (value: any) => {
+    alert(value)
+    entradaStore.getEntrada(value).then(e => {
+      setEntrada(entradaStore.entrada)
+      setVisible(!visible)
+    })
+  }
+
+  const showModal = (value: any) => {
+    setVisible(!visible)
   }
 
   return (
     <>
-      <Breadcrumb style={{ margin: '16px 0' }}>
-        <Breadcrumb.Item ><a href="suite">Saida</a></Breadcrumb.Item>
-
+      <Breadcrumb style={{ marginBottom: 50 }}>
+        <Breadcrumb.Item >Saida</Breadcrumb.Item>
       </Breadcrumb>
 
-      <SaidaForm onSubmit={onSubmit} />
-
-
-      <div style={{ borderBottom: 'solid 1px #bbb', marginTop: -30 }}>
-        <SaidaTable data={[]} />
-      </div>
-
-
-      <div style={{ display: 'flex', alignItems: 'flex-end', flexDirection: 'column', marginTop: 10 }}>
-        <label style={{ marginTop: 5 }}>
-          Qtde. Parcela<br />
-          <InputNumber style={{ width: 100, marginTop: 5, marginRight: 20 }} min={1} max={12} defaultValue={1} onChange={onChange} />
-        </label>
-        <label style={{ marginTop: 5 }}>
-          Valor Parcela<br />
-          <Input style={{ width: 100, marginTop: 5, marginRight: 20 }} onChange={onChange} />
-        </label>
-        <label style={{ marginTop: 5 }}>
-          Valor Total<br />
-          <Input style={{ width: 100, marginTop: 5, marginRight: 20 }} onChange={onChange} />
-        </label>
-
-
-      </div>
-      <div style={{ display: 'flex', alignItems: 'flex-end', marginTop: 10, marginRight: 10 }}>
-        <Button type="primary">Pagar</Button>
+      <div>
+        <SaidaTable
+          data={entradas}
+          onSelectedRow={onSelectedRow}
+          selected={entrada}
+          onSubmit={onSubmit}
+          showModal={showModal}
+          visible={visible}
+        />
       </div>
 
     </>

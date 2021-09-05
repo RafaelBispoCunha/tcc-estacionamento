@@ -1,32 +1,32 @@
 import { action, computed, observable, runInAction } from 'mobx'
 import api from '../api/api';
-import { IEntrada } from '../model/models';
+import { ISaida } from '../model/models';
 
-export class EntradaStore {
-   @observable private _entradas: IEntrada[] = []
-   @observable private _entrada: IEntrada = {} as IEntrada;
+export class SaidaStore {
+   @observable private _saidas: ISaida[] = []
+   @observable private _saida: ISaida = {} as ISaida;
    @observable public error: string | undefined = undefined;
    @observable public loading: boolean = false;
 
    @action
    clean() {
-      this._entradas = [];
-      this._entrada =  {} as IEntrada;
+      this._saidas = [];
+      this._saida = {} as ISaida;
       this.error = undefined;
       this.loading = false;
    }
 
    @action
-   getEntradas = async () => {
-      this._entradas = [];
+   getSaidas = async () => {
+      this._saidas = [];
       this.error = undefined
       this.loading = true;
       try {
-         const { data } = await api.get<IEntrada[]>(`/entrada`);
-         console.log("Entrada")
+         const { data } = await api.get<ISaida[]>(`/estacionados`);
+         console.log("DATA")
          console.log(data)
          runInAction(() => {
-            this._entradas = data;
+            this._saidas = data;
             this.loading = false;
          })
       } catch (error) {
@@ -38,16 +38,16 @@ export class EntradaStore {
    }
 
    @action
-   getEntrada = async (id: string) => {
-      this._entrada =  {} as IEntrada;
+   getSaida = async (id: number) => {
+      this._saida = {} as ISaida;
       this.error = undefined
       this.loading = true;
       try {
-         const { data } = await api.get<IEntrada>(`/entrada?id=${id}`);
-         console.log("Entrada")
+         const { data } = await api.get<ISaida>(`/estacionados/${id}`);
+         console.log("DATA")
          console.log(data)
          runInAction(() => {
-            this._entrada = data;
+            this._saida = data;
             this.loading = false;
          })
       } catch (error) {
@@ -57,14 +57,14 @@ export class EntradaStore {
          })
       }
    }
-
 
    @action
-   postEntrada = async (params: any) => {
+   postSaida = async (params: ISaida) => {
       this.error = undefined
       this.loading = true;
+     
       try {
-         await api.post(`/entrada`)
+         await api.post(`/estacionados`, params)
          runInAction(() => {
             this.loading = false;
          })
@@ -76,12 +76,16 @@ export class EntradaStore {
       }
    }
 
+  
+
+  
    @computed
-   get entradas() {
-      return this._entradas;
+   get saidas() {
+      return this._saidas;
    }
+
    @computed
-   get entrada() {
-      return this._entrada;
+   get saida() {
+      return this._saida;
    }
 }

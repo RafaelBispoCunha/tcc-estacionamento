@@ -1,7 +1,7 @@
 export interface IVaga{
    id?: number,
    andar: number,
-   numero: number,
+   numeroVaga: number,
    status:  boolean,
 }
 

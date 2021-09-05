@@ -38,8 +38,8 @@ const UsuarioPage = () =>{
    return(
      <>
         <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item ><span onClick={() => setIsForm(false)}>Funcionario</span></Breadcrumb.Item>
-          <Breadcrumb.Item><span onClick={() => setIsForm(true)}>Novo Funcionario</span></Breadcrumb.Item>
+          <Breadcrumb.Item ><span onClick={() => setIsForm(false)}>Usuário</span></Breadcrumb.Item>
+          <Breadcrumb.Item><span onClick={() => setIsForm(true)}>Novo Usuário</span></Breadcrumb.Item>
         </Breadcrumb>
         {form}
        

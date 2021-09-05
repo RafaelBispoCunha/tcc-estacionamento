@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { Table, Button, Tooltip, Modal } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 
+import { IVaga } from './../../model/models';
+
 interface TableHospedeProps {
-  data?: any[];
+  data?: IVaga[];
   onDelete: (value: any) => void;
   onAlter: (value: any) => void;
 }
@@ -16,7 +18,7 @@ const VagaTable: React.FC<TableHospedeProps> = ({ data, onDelete, onAlter }) => 
   const [key, setKey] = useState<number>(0);
 
   const handleOk = () => {
-    setModalText('Exccluindo...');
+    setModalText('Excluindo...');
     setConfirmLoading(true);
     onDelete(key)
     setTimeout(() => {
@@ -25,6 +27,8 @@ const VagaTable: React.FC<TableHospedeProps> = ({ data, onDelete, onAlter }) => 
     }, 2000);
   };
 
+  console.log('data')
+  console.log(data)
 
   const columns = [
     {
@@ -32,7 +36,7 @@ const VagaTable: React.FC<TableHospedeProps> = ({ data, onDelete, onAlter }) => 
       dataIndex: 'andar',
       key: 'andar',
       width: '10%',
-      render: (value: any) => value === 0 ? 'Terreo' : value + '° Andar'
+      render: (value: any, vaga: IVaga, index: number) => value === 0 ? 'Terreo' : value + '° Andar'
     },
     {
       title: 'N° Vaga',
@@ -48,14 +52,14 @@ const VagaTable: React.FC<TableHospedeProps> = ({ data, onDelete, onAlter }) => 
       title: 'Action',
       dataIndex: '',
       key: 'x',
-      render: (record: any) => {
+      render: (value: any, record: IVaga) => {
         return (
           <>
             <Tooltip placement="top" title="Editar">
-              <Button type="primary" style={{ marginRight: 10 }} onClick={() => onAlter(2)} ><EditOutlined /></Button>
+              <Button type="primary" style={{ marginRight: 10 }} onClick={() => onAlter(record.id!)} ><EditOutlined /></Button>
             </Tooltip>
             <Tooltip placement="top" title="Excluir" >
-              <Button type="primary" onClick={() => { setVisible(true); setKey(record.id) }} danger ><DeleteOutlined /></Button>
+              <Button type="primary" onClick={() => { setVisible(true); setKey(record.id!) }} danger ><DeleteOutlined /></Button>
             </Tooltip>
           </>
         )

@@ -3,40 +3,39 @@ import { Breadcrumb, Button } from 'antd';
 import VagaForm from './VagaForm'
 import VagaTable from './VagaTable'
 import { IVaga } from '../../model/models'
-import VagaService from '../../services/VagaService';
+import { useStoreContext } from '../../store/'
 
 const VagaPage = () => {
 
+  const { vagaStore } = useStoreContext();
+
+  const [vaga, setVaga] = useState<IVaga | undefined>(undefined)
   const [vagas, setVagas] = useState<IVaga[] | undefined>(undefined)
   const [isForm, setIsForm] = useState(false);
   const [operation, setOperation] = useState('CREATE')
 
   useEffect(() => {
-    VagaService.getAll().then(response => {
-      setVagas(response.data)
+    vagaStore.getVagas().then(e => {
+      setVagas(vagaStore.vagas)
     })
-      .catch(e => {
-        setVagas(undefined);
-      })
-    if (vagas?.length === 0) setIsForm(true)
-  }, [VagaService])
+  }, [vagaStore])
+
   const onSubmit = (values: any) => {
 
     if (operation === 'CREATE') {
-      VagaService.create(values).then(response => {
-        VagaService.getAll().then(response => {
-          setVagas(response.data);
-
+      vagaStore.postVaga(values).then(response => {
+        vagaStore.getVagas().then(response => {
+          setVagas(vagaStore.vagas);
+          setIsForm(false)
         })
-        setIsForm(false)
       }).catch(e => {
         console.log(e)
         setVagas(undefined);
       })
     } else {
-      VagaService.update(values).then(response => {
-        VagaService.getAll().then(response => {
-          setVagas(response.data);
+      vagaStore.putVaga(values).then(response => {
+        vagaStore.getVagas().then(response => {
+          setVagas(vagaStore.vagas);
 
         })
         setIsForm(false)
@@ -48,11 +47,10 @@ const VagaPage = () => {
   }
 
   const onDelete = (values: any) => {
-    VagaService.delete(values).then(response => {
-      console.log(response.data);
+    vagaStore.deleteVaga(values).then(response => {
       setIsForm(false);
-      VagaService.getAll().then(response => {
-        setVagas(response.data);
+      vagaStore.getVagas().then(response => {
+        setVagas(vagaStore.vagas);
         setOperation('CREATE');
       })
     }).catch(e => {
@@ -62,9 +60,9 @@ const VagaPage = () => {
 
   const onAlter = (values: any) => {
     setOperation('UPDATE');
-    VagaService.findById(values).then(response => {
+    vagaStore.getVaga(values).then(response => {
       setIsForm(true);
-      setVagas(response.data);
+      setVaga(vagaStore.vaga);
     }).catch(e => {
       setVagas(undefined);
     })
@@ -74,8 +72,7 @@ const VagaPage = () => {
     <VagaForm
       onSubmit={onSubmit}
       operation={operation}
-      defaultValues={vagas}
-      isForm={() => setIsForm(true)}
+      defaultValues={vaga}
     />
     : <VagaTable
       data={vagas}
@@ -87,16 +84,15 @@ const VagaPage = () => {
     <>
       <Breadcrumb style={{ margin: '16px 0' }}>
         <Breadcrumb.Item >
-          <Button type="link"  onClick={() => {
+          <Button type="link" onClick={() => {
             setIsForm(false);
             setOperation('CREATE')
           }}
           >Vagas</Button>
         </Breadcrumb.Item>
-        <Breadcrumb.Item><Button type="link" onClick={() => setIsForm(true)} style={{color: "black"}}>Nova Vaga</Button></Breadcrumb.Item>
+        <Breadcrumb.Item><Button type="link" onClick={() => setIsForm(true)} style={{ color: "black" }}>Nova Vaga</Button></Breadcrumb.Item>
       </Breadcrumb>
       {form}
-
     </>
   )
 }

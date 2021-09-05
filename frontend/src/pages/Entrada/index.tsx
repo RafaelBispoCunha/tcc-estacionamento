@@ -5,20 +5,20 @@ import EntradaForm from './EntradaForm';
 import EntradaTable from './EntradaTable';
 import { IVeiculo } from '../../model/models'
 import VeiculoService from '../../services/VeiculoService';
-import { EntradaStore } from '../../store/EntradaStore';
+import { useStoreContext } from '../../store/'
 
 const EntradaPage: React.FC = observer(() => {
 
-  const entrada = new EntradaStore();
+  const { entradaStore } = useStoreContext();
 
   const [isForm, setIsForm] = useState(false);
   const [veiculo, setVeiculo] = useState<IVeiculo | undefined>(undefined)
 
 
   useEffect(() => {
-    entrada.getEntradas()
+    entradaStore.getEntradas()
     
-  });
+  }, [entradaStore]);
 
   const onSubmit = (values: any) => {
     const newData = {
@@ -71,7 +71,7 @@ const EntradaPage: React.FC = observer(() => {
           veiculo={veiculo}
         />
         : <EntradaTable
-          data={entrada.entradas}
+          data={entradaStore.entradas}
         />}
 
     </div>

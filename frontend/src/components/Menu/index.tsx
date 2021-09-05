@@ -56,9 +56,9 @@ const MenuHorizontal = () => {
             </a>
          </Menu.Item>
 
-         <Menu.Item key="funcionario" icon={<UserOutlined />}>
-            Funcionario
-            <a href="/funcionario" rel="noopener noreferrer">
+         <Menu.Item key="usuario" icon={<UserOutlined />}>
+            Usuário
+            <a href="/usuario" rel="noopener noreferrer">
 
             </a>
          </Menu.Item>

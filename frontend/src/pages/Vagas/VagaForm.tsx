@@ -1,8 +1,15 @@
 import React from 'react';
 import { Form, Input, Button } from 'antd';
 import {  InputNumber } from 'antd';
+import { IVaga } from './../../model/models';
 
-const VagaForm: React.FC<any> = ({
+export interface IVagaFormProps {
+  onSubmit?: (dataForm: any) => void;
+  operation: string;
+  defaultValues?: IVaga;
+}
+
+const VagaForm: React.FC<IVagaFormProps> = ({
   onSubmit = () => { },
   operation,
   defaultValues
@@ -30,7 +37,7 @@ const VagaForm: React.FC<any> = ({
             label="ID"
             name="id"
             hidden
-            initialValue={operation === 'UPDATE' ? defaultValues[0].id : ''}
+            initialValue={operation === 'UPDATE' ? defaultValues?.id : ''}
             style={{ width: 200, marginRight: 20 }}
           >
             <Input />
@@ -40,26 +47,27 @@ const VagaForm: React.FC<any> = ({
           <Form.Item
             label="Andar"
             name="andar"
-            initialValue={operation === 'UPDATE' ? defaultValues[0].andar : 0}
-            rules={[{ required: true, message: 'Please input your username!' }]}
+            initialValue={operation === 'UPDATE' ? defaultValues?.andar : 0}
+            
 
           >
-            <InputNumber min={0} max={10} defaultValue={1} style={{ marginRight: 20 }} />
+            <InputNumber min={0} max={10} defaultValue={0} style={{ marginRight: 20 }} />
           </Form.Item>
 
           <Form.Item
             label="N° Vaga"
             name="numeroVaga"
-            initialValue={operation === 'UPDATE' ? defaultValues[0].numeroVaga : ''}
+            initialValue={operation === 'UPDATE' ? defaultValues?.numeroVaga : ''}
+            rules={[{ required: true, message: 'Informe o número da vaga!' }]}
             
           >
-            <InputNumber min={0} max={10} defaultValue={1} style={{ marginRight: 20 }}/>
+            <InputNumber min={0} max={10} defaultValue={defaultValues?.numeroVaga ? defaultValues?.numeroVaga : ''} style={{ marginRight: 20 }}/>
           </Form.Item>
 
           <Form.Item
             label="Status"
             name="status"
-            initialValue={operation === 'UPDATE' ? defaultValues[0].status : 'Disponivel'}
+            initialValue={operation === 'UPDATE' ? defaultValues?.status : 'Disponivel'}
             style={{ width: 150}}
           
           >

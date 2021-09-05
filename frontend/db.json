@@ -1,9 +1,21 @@
 {
   "vaga": [
     {
-      "id": 1,
+      "id": 3,
       "andar": 0,
-      "numeroVaga": "1",
+      "numeroVaga": 3,
+      "status": "Disponivel"
+    },
+    {
+      "id": 5,
+      "andar": 1,
+      "numeroVaga": 2,
+      "status": "Disponivel"
+    },
+    {
+      "id": 6,
+      "andar": 1,
+      "numeroVaga": 3,
       "status": "Disponivel"
     }
   ],

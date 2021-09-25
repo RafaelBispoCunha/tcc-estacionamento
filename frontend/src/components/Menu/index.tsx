@@ -24,7 +24,7 @@ const MenuHorizontal = () => {
       >
          <Menu.Item key="home" icon={<HomeOutlined /> }>
             Home
-            <a href="/" >
+            <a href="/home" >
 
             </a>
          </Menu.Item>
@@ -42,16 +42,16 @@ const MenuHorizontal = () => {
             </a>
          </Menu.Item>
 
-         <Menu.Item key="vagas" icon={< CarOutlined />}>
-            Vagas
-            <a href="/vagas" >
+         <Menu.Item key="vaga" icon={< CarOutlined />}>
+            Vaga
+            <a href="/vaga" >
 
             </a>
          </Menu.Item>
 
-         <Menu.Item key="consultas" icon={<AreaChartOutlined />}>
-            Consultas
-            <a href="/consultas" >
+         <Menu.Item key="consulta" icon={<AreaChartOutlined />}>
+            Consulta
+            <a href="/consulta" >
 
             </a>
          </Menu.Item>

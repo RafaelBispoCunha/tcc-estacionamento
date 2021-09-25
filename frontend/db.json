@@ -40,47 +40,29 @@
   "entrada": [
     { "id": 1,
       "placa": "CAA-DHD",
-      "modelo": "TESTE A",
-      "marca": "TESTE",
-      "andar": 0,
-      "numeroVaga": 2,
-      "usuario": "teste",
+      "modelo": "Toro",
+      "marca": "Fiat",
+      "andar": 1,
+      "numeroVaga": 1,
+      "usuario": "João",
       "dataHoraEntrada": "01/01/2021 12:00:00"
     },
     { "id": 2,
       "placa": "BAA-DHC",
-      "modelo": "TESTE A",
-      "marca": "TESTE",
-      "andar": 0,
+      "modelo": "Hilux",
+      "marca": "Toyota",
+      "andar": 1,
       "numeroVaga": 2,
-      "usuario": "teste",
+      "usuario": "Carlos",
       "dataHoraEntrada": "01/01/2021 12:00:00"
     },
     { "id": 3,
       "placa": "PLC-DHD",
-      "modelo": "TESTE A",
-      "marca": "TESTE",
-      "andar": 0,
-      "numeroVaga": 2,
-      "usuario": "teste",
-      "dataHoraEntrada": "01/01/2021 12:00:00"
-    },
-    { "id": 4,
-      "placa": "PLC-DHB",
-      "modelo": "TESTE A",
-      "marca": "TESTE",
-      "andar": 0,
-      "numeroVaga": 2,
-      "usuario": "teste",
-      "dataHoraEntrada": "01/01/2021 12:00:00"
-    },
-    { "id": 5,
-      "placa": "PLC-DHA",
-      "modelo": "TESTE A",
-      "marca": "TESTE",
-      "andar": 0,
-      "numeroVaga": 2,
-      "usuario": "teste",
+      "modelo": "Renegade",
+      "marca": "Jeep",
+      "andar": 1,
+      "numeroVaga": 3,
+      "usuario": "Maria",
       "dataHoraEntrada": "01/01/2021 12:00:00"
     }
 
@@ -88,13 +70,34 @@
   "usuario": [
     {
       "id": 1,
-      "nome": "TESTE",
-      "cpf": "TESTE",
-      "email": "TESTE",
-      "telefone": "TESTE",
+      "nome": "João",
+      "cpf": "476.154.010-97",
+      "email": "joao@email.com.br",
+      "telefone": "1199999-9999",
       "nivelAcesso": "ADMIN",
-      "senha": "TESTE",
-      "senha2": "TESTE"
+      "senha": "123456",
+      "senha2": "123456"
+    },
+    {
+      "id": 2,
+      "nome": "Carlos",
+      "cpf": "444.846.140-81",
+      "email": "carlos@email.com.br",
+      "telefone": "1199999-9999",
+      "nivelAcesso": "NORMAL",
+      "senha": "123456",
+      "senha2": "123456"
+    },
+    {
+      "id": 3,
+      "nome": "Maria",
+      "cpf": "266.253.450-83",
+      "email": "maria@email.com.br",
+      "telefone": "1199999-9999",
+      "nivelAcesso": "NORMAL",
+      "senha": "123456",
+      "senha2": "123456"
     }
+    
   ]
 }

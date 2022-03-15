@@ -20,6 +20,7 @@ const UsuarioForm: React.FC<any> = ({
       initialValues={{ remember: true }}
       onFinish={onSubmit}
     >
+      
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'row', width: '75%' }}>
           <Form.Item
@@ -34,7 +35,7 @@ const UsuarioForm: React.FC<any> = ({
           <Form.Item
             label="Nome"
             name="nome"
-            initialValue={operation === 'UPDATE' ? defaultValues?.nome : ''}
+            initialValue={ defaultValues?.nome }
             rules={[{ required: true, message: 'Informe o nome!' }]}
             style={{ width: 500, marginRight: 20 }}
           >

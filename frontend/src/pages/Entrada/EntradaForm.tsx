@@ -1,5 +1,5 @@
 import React from 'react';
-import { Select, Form, Input } from 'antd';
+import { Form, Input } from 'antd';
 import { Button } from 'antd';
 import { IVaga, IVeiculo } from '../../model/models';
 
@@ -18,20 +18,15 @@ const EntradaForm: React.FC<IEntradaFormProps> = ({
 
 }) => {
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
-  };
-
-  const [form] = Form.useForm<IVeiculo>();
-
-
-  const handleChange = (value: any) => {
-    console.log(`selected ${value}`);
-  }
-
+  const [form] = Form.useForm();
 
   const { Search } = Input;
-  const { Option } = Select;
+
+  const onSubmitForm = (values: any)=>{
+    onSubmit(values)
+    form.resetFields()
+  }
+ 
 
   return (
     <Form
@@ -39,49 +34,62 @@ const EntradaForm: React.FC<IEntradaFormProps> = ({
       layout="vertical"
       name="basic"
       initialValues={{ remember: true }}
-      onFinish={onSubmit}
-      onFinishFailed={onFinishFailed}
-
+      onFinish={onSubmitForm}
     >
       <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
         <div>
+        {veiculo?.anoFabricacao}
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'row'}}>
+          <Form.Item
+            label="Buscar Veículo"
+            style={{ marginRight: 20, width: 230 }}
+          >
+            <Search
+              placeholder="Informe a Placa..."
+              allowClear
+             
+              size="middle"
+              onSearch={onSearchVehicle}
+              style={{ textTransform: 'uppercase' }}
+              required
+            />
+          </Form.Item>
+          <Form.Item
+            label="Nome do Condutor"
+            name="nomeCondutor"
+            style={{ width: 480 }}
 
+          >
+            
+            <Input />
+          </Form.Item>
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'row', marginBottom: 20 }}>
-          <Search
-            placeholder="Informe a Placa..."
-            allowClear
-            enterButton="Buscar"
-            size="middle"
-            onSearch={onSearchVehicle}
-            style={{ width: 250, marginTop: 30, marginRight: 30, textTransform: 'uppercase' }}
-            required
-          />
-
           <Form.Item
             label="Placa"
             name="placa"
-            style={{ margin: '0 10px' }}
+            style={{ width: 230, margin: '0 10px'}}
             initialValue={veiculo?.placa}
           >
-            <Input disabled />
+            <Input  />
           </Form.Item>
           <Form.Item
             label="Modelo"
             name="modelo"
-            style={{ margin: '0 10px' }}
+            style={{ width: 230, margin: '0 10px' }}
             initialValue={veiculo?.modelo}
           >
-            <Input disabled value={veiculo?.modelo} />
+            <Input  value={veiculo?.modelo} />
           </Form.Item>
 
           <Form.Item
             label="Marca"
             name="marca"
-            style={{ margin: '0 10px' }}
+            style={{ width: 230, margin: '0 10px' }}
             initialValue={veiculo?.marca}
           >
-            <Input disabled />
+            <Input  />
           </Form.Item>
 
         </div>
@@ -89,58 +97,41 @@ const EntradaForm: React.FC<IEntradaFormProps> = ({
           <Form.Item
             label="Cor"
             name="cor"
-            style={{ margin: '0 10px' }}
+            style={{  width: 230, margin: '0 10px' }}
             initialValue={veiculo?.cor}
 
 
           >
-            <Input disabled />
+            <Input  />
           </Form.Item>
           <Form.Item
             label="Ano do Modelo"
-            name="anoModelo"
-            style={{ margin: '0 10px' }}
-            initialValue={veiculo?.anoModelo}
+            name="anoFabricacao"
+            style={{  width: 230, margin: '0 10px' }}
+            initialValue={veiculo?.anoFabricacao}
 
 
           >
-            <Input disabled />
+            <Input  />
           </Form.Item>
           <Form.Item
             label="Situação"
             name="situacao"
-            style={{ margin: '0 10px' }}
+            style={{ width: 230, margin: '0 10px' }}
             initialValue={veiculo?.situacao === undefined ? '' : veiculo?.situacao}
           //rules={[{ required: true, message: 'Please input your username!' }]}
 
           >
-            <Input disabled />
+            <Input  />
           </Form.Item>
 
-          <Form.Item
-            label="Vaga"
-            name="vaga"
-            style={{ margin: '0 10px' }}
-            
-          //initialValue={operation === 'UPDATE' ? defaultValues[0].vaga :''}
-          //rules={[{ required: true, message: 'Please input your username!' }]}
 
-          >
-            <Select style={{ width: 200 }} onChange={handleChange} defaultValue="0">
-            <Option  value="0">Selecione um vaga</Option>
-              {data?.map(vaga =>{
-                
-                return vaga.id ? <Option key={vaga.id!} value={vaga.id!}>Andar: {vaga.andar} - N° Vaga: {vaga.numeroVaga}</Option> : <Option  value="0">Sem vagas Registradas</Option>
-              })}
-              
-            </Select>
-          </Form.Item>
 
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: 20 }}>
           <Form.Item>
             <Button type="primary" htmlType="submit" >Salvar</Button>
-            <Button type="primary" style={{ marginLeft: 20 }}>Limpar</Button>
+  
           </Form.Item>
         </div>
       </div>

@@ -6,11 +6,12 @@ export interface IVaga{
 }
 
 export interface IVeiculo{
+   id?: number,
    placa: string,
    modelo: string,
    marca:string,
    cor:string,
-   anoModelo:number, 
+   anoFabricacao:number, 
    situacao: string,
 }
 
@@ -26,13 +27,10 @@ export interface IEntrada{
 
 export interface IEntrada{
    id?: number;
-   placa: string,
-   modelo: string,
-   marca:string,
-   andar:number, 
-   numeroVaga: number,
+   nomeCondutor: string;
    usuario: string;
    dataHoraEntrada: string;
+   veiculo: IVeiculo;
 }
 
 export interface ISaida{

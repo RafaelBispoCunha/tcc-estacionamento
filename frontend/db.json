@@ -1,72 +1,71 @@
 {
-  "vaga": [
-    {
-      "id": 3,
-      "andar": 0,
-      "numeroVaga": 3,
-      "status": "Disponivel"
-    },
-    {
-      "id": 5,
-      "andar": 1,
-      "numeroVaga": 2,
-      "status": "Disponivel"
-    },
-    {
-      "id": 6,
-      "andar": 1,
-      "numeroVaga": 3,
-      "status": "Disponivel"
-    }
-  ],
   "veiculos": [
     {
-      "placa": "PLC-DHC",
-      "modelo": "TESTE A",
-      "marca": "TESTE",
-      "cor": "Azul",
-      "anoModelo": "2021",
-      "situacao": "Normal"
-    },
-    {
-      "placa": "PLD-DHD",
-      "modelo": "TESTE A",
-      "marca": "TESTE",
-      "cor": "Vermelho",
-      "anoModelo": "2021",
-      "situacao": "Normal"
+      "id": 1,
+      "placa": "CAA-DHD",
+      "modelo": "Toro",
+      "marca": "Fiat",
+      "cor": "vermelho",
+      "anoFabricacao": "1996",
+      "situacao": "OK"
     }
   ],
   "entrada": [
     {
-      "id": 1,
-      "placa": "CAADHD",
-      "modelo": "Toro",
-      "marca": "Fiat",
-      "andar": 1,
-      "numeroVaga": 1,
+      "dataHoraEntrada": "01-01-2022",
       "usuario": "João",
-      "dataHoraEntrada": "01/01/2021 12:00:00"
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 11
     },
     {
-      "id": 2,
-      "placa": "BAA-DHC",
-      "modelo": "Hilux",
-      "marca": "Toyota",
-      "andar": 1,
-      "numeroVaga": 2,
-      "usuario": "Carlos",
-      "dataHoraEntrada": "01/01/2021 12:00:00"
+      "dataHoraEntrada": "01-01-2022",
+      "usuario": "João",
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 12
     },
     {
-      "id": 3,
-      "placa": "PLC-DHD",
-      "modelo": "Renegade",
-      "marca": "Jeep",
-      "andar": 1,
-      "numeroVaga": 3,
-      "usuario": "Maria",
-      "dataHoraEntrada": "01/01/2021 12:00:00"
+      "dataHoraEntrada": "01-01-2022",
+      "usuario": "João",
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 13
+    },
+    {
+      "dataHoraEntrada": "01-01-2022",
+      "usuario": "João",
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 14
     }
   ],
   "usuario": [
@@ -76,7 +75,8 @@
       "cpf": "476.154.010-97",
       "email": "joao@email.com.br",
       "telefone": "1199999-9999",
-      "nivelAcesso": "ADMIN",
+      "celular": "(11)11111-1111",
+      "nivelAcesso": "NORMAL",
       "senha": "123456",
       "senha2": "123456"
     },
@@ -92,22 +92,296 @@
     },
     {
       "id": 3,
-      "nome": "Maria",
-      "cpf": "266.253.450-83",
-      "email": "maria@email.com.br",
-      "telefone": "1199999-9999",
-      "nivelAcesso": "NORMAL",
-      "senha": "123456",
-      "senha2": "123456"
+      "nome": "TESTE",
+      "cpf": "111.111.111-11",
+      "email": "TESTE@terste",
+      "telefone": "(11)1111-1111",
+      "celular": "(11)11111-1111",
+      "nivelAcesso": "ADMIN",
+      "senha": "12345",
+      "senha2": "12345"
     }
   ],
-  "cliente": [
+  "saida": [
     {
-      "id": 1,
-      "nome": "TESTE",
-      "cpf": "TESTE",
-      "email": "TESTE",
-      "telefone": "TESTE"
+      "dataHoraEntrada": "01/01/2022 12:59:00",
+      "usuario": "João",
+      "condutor": "",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 1
+    },
+    {
+      "dataHoraEntrada": "01-01-2022",
+      "usuario": "João",
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 3
+    },
+    {
+      "dataHoraEntrada": "01-01-2022",
+      "usuario": "João",
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 2
+    },
+    {
+      "dataHoraEntrada": "01-01-2022",
+      "usuario": "João",
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 4
+    },
+    {
+      "dataHoraEntrada": "01-01-2022",
+      "usuario": "João",
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 5
+    },
+    {
+      "dataHoraEntrada": "01-01-2022",
+      "usuario": "João",
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 6
+    },
+    {
+      "dataHoraEntrada": "01-01-2022",
+      "usuario": "João",
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 7
+    },
+    {
+      "dataHoraEntrada": "01-01-2022",
+      "usuario": "João",
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 8
+    },
+    {
+      "dataHoraEntrada": "01-01-2022",
+      "usuario": "João",
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 9
+    },
+    {
+      "dataHoraEntrada": "01-01-2022",
+      "usuario": "João",
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 10
+    },
+    {
+      "dataHoraEntrada": "01-01-2022",
+      "usuario": "João",
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 11
+    },
+    {
+      "dataHoraEntrada": "01-01-2022",
+      "usuario": "João",
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 20
+    },
+    {
+      "dataHoraEntrada": "01-01-2022",
+      "usuario": "João",
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 19
+    },
+    {
+      "dataHoraEntrada": "01-01-2022",
+      "usuario": "João",
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 12
+    },
+    {
+      "dataHoraEntrada": "01-01-2022",
+      "usuario": "João",
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 13
+    },
+    {
+      "dataHoraEntrada": "01-01-2022",
+      "usuario": "João",
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 14
+    },
+    {
+      "dataHoraEntrada": "01-01-2022",
+      "usuario": "João",
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 15
+    },
+    {
+      "dataHoraEntrada": "01-01-2022",
+      "usuario": "João",
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 16
+    },
+    {
+      "dataHoraEntrada": "01-01-2022",
+      "usuario": "João",
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 17
+    },
+    {
+      "dataHoraEntrada": "01-01-2022",
+      "usuario": "João",
+      "nomeCondutor": "Teste",
+      "veiculo": {
+        "placa": "CAA-DHD",
+        "modelo": "Monza",
+        "marca": "Chevrolet",
+        "cor": "Vinho",
+        "anoFabricacao": "1996",
+        "situacao": "Nenhuma restrição"
+      },
+      "id": 18
     }
   ]
 }

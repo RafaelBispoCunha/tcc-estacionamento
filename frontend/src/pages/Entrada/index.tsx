@@ -1,80 +1,65 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { observer } from 'mobx-react';
-import { Breadcrumb } from 'antd';
+import { Breadcrumb, Spin } from 'antd';
 import EntradaForm from './EntradaForm';
-import EntradaTable from './EntradaTable';
-import { IVeiculo, IVaga, IEntrada } from '../../model/models'
 import { useStoreContext } from '../../store/'
-import { ButtonLink } from './style'
+import { useState } from 'react';
+import { IVeiculo } from '../../model/models';
+import { IEntrada } from './../../model/models';
 
 const EntradaPage: React.FC = observer(() => {
 
-  const { entradaStore, veiculoStore, vagaStore } = useStoreContext();
-
-  const [isForm, setIsForm] = useState(false);
-  const [veiculo, setVeiculo] = useState<IVeiculo | undefined>(undefined)
-  const [entradas, setEntradas] = useState<IEntrada[] | undefined>(undefined)
-  const [vagas, setVagas] = useState<IVaga[] | undefined>(undefined)
-
-
-  useEffect(() => {
-    entradaStore.getEntradas().then(e => {
-      setEntradas(entradaStore.entradas)
-    })
-    vagaStore.getVagas().then(e => {
-      setVagas(vagaStore.vagas)
-
-    })
-  }, [entradaStore, vagaStore]);
+  const { entradaStore, veiculoStore } = useStoreContext();
+  const [veiculoData, setVeiculoData] = useState<IVeiculo>()
+  const [load, setLoad] = useState(false);
 
   const onSubmit = (values: any) => {
+    setLoad(true)
     const newData = {
-      placa: values.placa,
-      modelo: values.modelo,
-      marca: values.marca,
-      andar: 0,
-      numeroVaga: 2
-    }
-    entradaStore.postEntrada(newData)
+      dataHoraEntrada: '01-01-2022',
+      usuario: 'João',
+      nomeCondutor: values.nomeCondutor,
+      veiculo: {
+        placa: values.placa,
+        modelo: values.modelo,
+        marca: values.marca,
+        cor: values.cor,
+        anoFabricacao: values.anoFabricacao,
+        situacao: values.situacao,
+      }
+    } as IEntrada
 
-    entradaStore.getEntradas().then(e => {
-      setEntradas(entradaStore.entradas)
-
-    }).catch(e => {
-      console.log(e)
+    entradaStore.postEntrada(newData).then(e=>{
+      setLoad(false)
+    }).catch(e =>{
 
     })
+
   }
 
-  const onSearchVehicle = (value: any) => {
-    veiculoStore.getVeiculo(value).then(e => {
-      setVeiculo(veiculoStore.veiculo)
-    })
-  };
+  const onSearchVehicle = useCallback((value: any) => {
+    veiculoStore.getVeiculo(value)
+      .then(e => {
+        setVeiculoData(veiculoStore.veiculo)
+      }).catch(e => {
 
+      })
+    
+  }, [veiculoStore, setVeiculoData]);
 
   return (
     <div>
-      <Breadcrumb style={{ margin: '16px 0' }}>
-        <Breadcrumb.Item ><ButtonLink href="entrada" type="link">Veiculos Estacionados</ButtonLink></Breadcrumb.Item>
-        <Breadcrumb.Item><ButtonLink type="link" onClick={() => setIsForm(true)}>Nova Entrada</ButtonLink></Breadcrumb.Item>
-      </Breadcrumb>
+      <Spin spinning={load}>
+        <Breadcrumb style={{ margin: '16px 0' }}>
+          <Breadcrumb.Item><p>Entrada</p></Breadcrumb.Item>
+        </Breadcrumb>
 
-
-
-      {/*  <VagaTable data={data}/>*/}
-
-      {isForm ?
         <EntradaForm
           onSubmit={onSubmit}
-          data={vagas}
           onSearchVehicle={onSearchVehicle}
-          veiculo={veiculo}
+          veiculo={veiculoData}
         />
-        : <EntradaTable
-          data={entradas}
-        />}
-
+      </Spin>
     </div>
   )
 })

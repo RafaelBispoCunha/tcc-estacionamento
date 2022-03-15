@@ -1,10 +1,9 @@
 import React from 'react';
-import { Menu } from 'antd';
+import { Menu  } from 'antd';
 import {
    HomeOutlined,
    CaretDownOutlined,
    CaretUpOutlined,
-   CarOutlined,
    AreaChartOutlined,
    UserOutlined,
    LogoutOutlined
@@ -22,7 +21,7 @@ const MenuHorizontal = () => {
          mode="horizontal"
          style={{ background: '#001529', color: '#FFF', height: 65, width: '100%' }}
       >
-         <Menu.Item key="home" icon={<HomeOutlined />}>
+         <Menu.Item key="home" icon={<HomeOutlined />} >
             Home
             <a href="/home" >
 
@@ -38,20 +37,6 @@ const MenuHorizontal = () => {
          <Menu.Item key="saida" icon={<CaretUpOutlined />}>
             Saida
             <a href="/saida" >
-
-            </a>
-         </Menu.Item>
-
-         <Menu.Item key="vaga" icon={< CarOutlined />}>
-            Vaga
-            <a href="/vaga" >
-
-            </a>
-         </Menu.Item>
-
-         <Menu.Item key="cliente" icon={< CarOutlined />}>
-            Cliente
-            <a href="/cliente" >
 
             </a>
          </Menu.Item>

@@ -1,6 +1,6 @@
 import { action, computed, observable, runInAction } from 'mobx'
 import api from '../api/api';
-import { ISaida } from '../model/models';
+import { ISaida, IEntrada } from '../model/models';
 
 export class SaidaStore {
    @observable private _saidas: ISaida[] = []
@@ -23,8 +23,7 @@ export class SaidaStore {
       this.loading = true;
       try {
          const { data } = await api.get<ISaida[]>(`/estacionados`);
-         console.log("DATA")
-         console.log(data)
+        
          runInAction(() => {
             this._saidas = data;
             this.loading = false;
@@ -44,8 +43,7 @@ export class SaidaStore {
       this.loading = true;
       try {
          const { data } = await api.get<ISaida>(`/estacionados/${id}`);
-         console.log("DATA")
-         console.log(data)
+         
          runInAction(() => {
             this._saida = data;
             this.loading = false;
@@ -59,12 +57,12 @@ export class SaidaStore {
    }
 
    @action
-   postSaida = async (params: ISaida) => {
+   postSaida = async (params: IEntrada) => {
       this.error = undefined
       this.loading = true;
      
       try {
-         await api.post(`/estacionados`, params)
+         await api.post(`/saida`, params)
          runInAction(() => {
             this.loading = false;
          })

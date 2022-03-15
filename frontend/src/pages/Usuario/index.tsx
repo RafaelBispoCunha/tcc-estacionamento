@@ -7,10 +7,8 @@ import { IUsuario } from '../../model/models'
 import { ButtonLink } from './style'
 
 const UsuarioPage = () => {
+
   const { usuarioStore } = useStoreContext();
-
-
-  const [usuario, setUsuario] = useState<IUsuario | undefined>(undefined)
   const [usuarios, setUsuarios] = useState<IUsuario[] | undefined>(undefined)
   const [isForm, setIsForm] = useState(false);
   const [operation, setOperation] = useState('CREATE')
@@ -19,7 +17,7 @@ const UsuarioPage = () => {
     usuarioStore.getUsuarios().then(e => {
       setUsuarios(usuarioStore.usuarios)
     })
-  }, [usuarioStore])
+  }, [usuarioStore, setUsuarios])
 
   const onSubmit = (values: any) => {
 
@@ -63,7 +61,7 @@ const UsuarioPage = () => {
     setOperation('UPDATE');
     usuarioStore.getUsuario(values).then(response => {
       setIsForm(true);
-      setUsuario(usuarioStore.usuario);
+      
     }).catch(e => {
       setUsuarios(undefined);
     })
@@ -73,7 +71,7 @@ const UsuarioPage = () => {
     <UsuarioForm
       onSubmit={onSubmit}
       operation={operation}
-      defaultValues={usuario}
+      defaultValues={usuarioStore.usuario}
     />
     : <UsuarioTable
       data={usuarios}

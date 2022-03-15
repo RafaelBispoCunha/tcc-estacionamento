@@ -23,8 +23,7 @@ export class EntradaStore {
       this.loading = true;
       try {
          const { data } = await api.get<IEntrada[]>(`/entrada`);
-         console.log("Entrada")
-         console.log(data)
+         
          runInAction(() => {
             this._entradas = data;
             this.loading = false;
@@ -44,8 +43,7 @@ export class EntradaStore {
       this.loading = true;
       try {
          const { data } = await api.get<IEntrada>(`/entrada?id=${id}`);
-         console.log("Entrada")
-         console.log(data)
+         
          runInAction(() => {
             this._entrada = data;
             this.loading = false;
@@ -60,11 +58,30 @@ export class EntradaStore {
 
 
    @action
-   postEntrada = async (params: any) => {
+   postEntrada = async (params: IEntrada) => {
       this.error = undefined
       this.loading = true;
       try {
-         await api.post(`/entrada`)
+         
+         await api.post(`/entrada`, params)
+         runInAction(() => {
+            this.loading = false;
+         })
+      } catch (error) {
+         runInAction(() => {
+            this.loading = false;
+            this.error = error
+         })
+      }
+   }
+
+   @action
+   deleteEntrada= async (id?: number) => {
+      this.error = undefined
+      this.loading = true;
+  
+      try {
+         await api.delete(`/entrada/${id}`)
          runInAction(() => {
             this.loading = false;
          })

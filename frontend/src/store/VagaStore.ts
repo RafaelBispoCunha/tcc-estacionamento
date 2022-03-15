@@ -23,8 +23,7 @@ export class VagaStore {
       this.loading = true;
       try {
          const { data } = await api.get<IVaga[]>(`/vaga`);
-         console.log("DATA")
-         console.log(data)
+         
          runInAction(() => {
             this._vagas = data;
             this.loading = false;
@@ -44,8 +43,7 @@ export class VagaStore {
       this.loading = true;
       try {
          const { data } = await api.get<IVaga>(`/vaga/${id}`);
-         console.log("DATA")
-         console.log(data)
+         
          runInAction(() => {
             this._vaga = data;
             this.loading = false;
@@ -80,8 +78,7 @@ export class VagaStore {
    putVaga = async (params: IVaga) => {
       this.error = undefined
       this.loading = true;
-      console.log('params')
-      console.log(params)
+      
       try {
          await api.put(`/vaga/${params.id}`, params)
          runInAction(() => {

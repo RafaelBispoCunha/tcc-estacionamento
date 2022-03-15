@@ -23,8 +23,7 @@ export class UsuarioStore {
       this.loading = true;
       try {
          const { data } = await api.get<IUsuario[]>(`/usuario`);
-         console.log("DATA")
-         console.log(data)
+         
          runInAction(() => {
             this._usuarios = data;
             this.loading = false;
@@ -43,9 +42,8 @@ export class UsuarioStore {
       this.error = undefined
       this.loading = true;
       try {
-         const { data } = await api.get<IUsuario>(`/vaga/${id}`);
-         console.log("DATA")
-         console.log(data)
+         const { data } = await api.get<IUsuario>(`/usuario/${id}`);
+         
          runInAction(() => {
             this._usuario = data;
             this.loading = false;
@@ -65,6 +63,7 @@ export class UsuarioStore {
      
       try {
          await api.post(`/usuario`, params)
+      
          runInAction(() => {
             this.loading = false;
          })
@@ -80,8 +79,7 @@ export class UsuarioStore {
    putUsuario= async (params: IUsuario) => {
       this.error = undefined
       this.loading = true;
-      console.log('params')
-      console.log(params)
+      
       try {
          await api.put(`/usuario/${params.id}`, params)
          runInAction(() => {

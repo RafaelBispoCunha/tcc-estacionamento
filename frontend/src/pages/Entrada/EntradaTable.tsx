@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Button, Tooltip } from 'antd';
+import { Table } from 'antd';
 import { IEntrada } from '../../model/models'
 
 
@@ -65,18 +65,7 @@ const EntradaTable: React.FC<TableHospedeProps> = ({ data/*, onDelete, onAlter*/
       dataIndex: 'usuario',
       render: (value: any) => value
        
-    },
-    {
-      title: 'Action',
-      dataIndex: '',
-      render: (record: any) => {
-        return (
-          <Tooltip placement="top" title="Saída">
-            <Button type="primary" onClick={() => alert("")} >Saída</Button>
-          </Tooltip>
-        )
-      }
-    },
+    }
   ];
   return (<div>
     <div style={{ marginBottom: 16 }}>

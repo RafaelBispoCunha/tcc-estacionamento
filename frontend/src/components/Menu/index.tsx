@@ -1,13 +1,13 @@
 import React from 'react';
 import { Menu } from 'antd';
-import { 
+import {
    HomeOutlined,
-   CaretDownOutlined, 
-   CaretUpOutlined, 
-   CarOutlined, 
-   AreaChartOutlined, 
-   UserOutlined, 
-   LogoutOutlined 
+   CaretDownOutlined,
+   CaretUpOutlined,
+   CarOutlined,
+   AreaChartOutlined,
+   UserOutlined,
+   LogoutOutlined
 } from '@ant-design/icons';
 
 import { useAuth } from '../../auth';
@@ -22,13 +22,13 @@ const MenuHorizontal = () => {
          mode="horizontal"
          style={{ background: '#001529', color: '#FFF', height: 65, width: '100%' }}
       >
-         <Menu.Item key="home" icon={<HomeOutlined /> }>
+         <Menu.Item key="home" icon={<HomeOutlined />}>
             Home
             <a href="/home" >
 
             </a>
          </Menu.Item>
-         <Menu.Item key="entrada" icon={<CaretDownOutlined /> }>
+         <Menu.Item key="entrada" icon={<CaretDownOutlined />}>
             Entrada
             <a href="/entrada">
 
@@ -45,6 +45,13 @@ const MenuHorizontal = () => {
          <Menu.Item key="vaga" icon={< CarOutlined />}>
             Vaga
             <a href="/vaga" >
+
+            </a>
+         </Menu.Item>
+
+         <Menu.Item key="cliente" icon={< CarOutlined />}>
+            Cliente
+            <a href="/cliente" >
 
             </a>
          </Menu.Item>

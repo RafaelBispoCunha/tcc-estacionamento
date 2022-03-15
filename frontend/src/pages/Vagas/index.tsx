@@ -4,6 +4,7 @@ import VagaForm from './VagaForm'
 import VagaTable from './VagaTable'
 import { IVaga } from '../../model/models'
 import { useStoreContext } from '../../store/'
+import { ButtonLink } from './style'
 
 const VagaPage = () => {
 
@@ -58,7 +59,7 @@ const VagaPage = () => {
     })
   }
 
-  const onAlter = (values: any) => {
+ /* const onAlter = (values: any) => {
     setOperation('UPDATE');
     vagaStore.getVaga(values).then(response => {
       setIsForm(true);
@@ -66,6 +67,13 @@ const VagaPage = () => {
     }).catch(e => {
       setVagas(undefined);
     })
+  }*/
+
+  const onAlter = (values: any) => {
+    setOperation('UPDATE');
+    console.log(values)
+    setVaga(values)
+    setIsForm(true);
   }
 
   const form = isForm ?
@@ -83,14 +91,10 @@ const VagaPage = () => {
   return (
     <>
       <Breadcrumb style={{ margin: '16px 0' }}>
-        <Breadcrumb.Item >
-          <Button type="link" onClick={() => {
-            setIsForm(false);
-            setOperation('CREATE')
-          }}
-          >Vagas</Button>
-        </Breadcrumb.Item>
-        <Breadcrumb.Item><Button type="link" onClick={() => setIsForm(true)} style={{ color: "black" }}>Nova Vaga</Button></Breadcrumb.Item>
+
+        <Breadcrumb.Item ><ButtonLink type="link" onClick={() => setIsForm(false)}>Vagas</ButtonLink></Breadcrumb.Item>
+        <Breadcrumb.Item><ButtonLink type="link" onClick={() => setIsForm(true)}>Nova Vaga</ButtonLink></Breadcrumb.Item>
+
       </Breadcrumb>
       {form}
     </>

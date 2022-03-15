@@ -55,3 +55,11 @@ export interface IUsuario{
    senha: string;
    dataHoraCadastro: string;
 }
+export interface ICliente{
+   id?: number;
+   nome: string;
+   cpf: string;
+   email: string;
+   telefone: string;
+   dataHoraCadastro: string;
+}

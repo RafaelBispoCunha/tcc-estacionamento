@@ -2,18 +2,22 @@ import React, { useState } from 'react';
 import { Table, Button, Tooltip, Modal } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 
-import { IVaga } from './../../model/models';
+import { ICliente } from '../../model/models'
 
-interface TableHospedeProps {
-  data?: IVaga[];
-  onDelete: (value: any) => void;
-  onAlter: (value: any) => void;
+interface TableClienteProps {
+  data?: ICliente[];
+  onDelete: (value: any) => void
+  onAlter: (value: any) => void
 }
 
-const VagaTable: React.FC<TableHospedeProps> = ({ data, onDelete, onAlter }) => {
+const ClienteTable: React.FC<TableClienteProps> = ({
+  data,
+  onDelete,
+  onAlter
+}) => {
 
   const [visible, setVisible] = useState(false);
-  const [modalText, setModalText] = useState('Deseja Excluir a Vaga?');
+  const [modalText, setModalText] = useState('Deseja Excluir o cliente?');
   const [confirmLoading, setConfirmLoading] = React.useState(false);
   const [key, setKey] = useState<number>(0);
 
@@ -27,36 +31,38 @@ const VagaTable: React.FC<TableHospedeProps> = ({ data, onDelete, onAlter }) => 
     }, 2000);
   };
 
-  console.log('data')
-  console.log(data)
-
   const columns = [
     {
-      title: 'Andar',
-      dataIndex: 'andar',
-      key: 'andar',
-      width: '10%',
-      render: (value: any, vaga: IVaga, index: number) => value === 0 ? 'Terreo' : value + '° Andar'
+      title: 'Nome',
+      dataIndex: 'nome',
+      key: 'nome',
+      width: '30%',
     },
     {
-      title: 'N° Vaga',
-      dataIndex: 'numeroVaga',
-      key: 'numeroVaga',
+      title: 'CPF',
+      dataIndex: 'cpf',
+      key: 'cpf',
+      width: '20%',
     },
     {
-      title: 'Status',
-      dataIndex: 'status',
-      key: 'status',
+      title: 'E-mail',
+      dataIndex: 'email',
+      key: 'email',
+    },
+    {
+      title: 'Telefone',
+      dataIndex: 'telefone',
+      key: 'telefone',
     },
     {
       title: 'Action',
       dataIndex: '',
       key: 'x',
-      render: (value: any, record: IVaga) => {
+      render: (record: any) => {
         return (
           <>
             <Tooltip placement="top" title="Editar">
-              <Button type="primary" style={{ marginRight: 10 }} onClick={() => onAlter(record)} ><EditOutlined /></Button>
+              <Button type="primary" style={{ marginRight: 10 }} onClick={() => onAlter(record.id!)} ><EditOutlined /></Button>
             </Tooltip>
             <Tooltip placement="top" title="Excluir" >
               <Button type="primary" onClick={() => { setVisible(true); setKey(record.id!) }} danger ><DeleteOutlined /></Button>
@@ -75,7 +81,7 @@ const VagaTable: React.FC<TableHospedeProps> = ({ data, onDelete, onAlter }) => 
       />
 
       <Modal
-        title="Excluir Vaga"
+        title="Excluir Cliente"
         visible={visible}
         onOk={handleOk}
         confirmLoading={confirmLoading}
@@ -85,6 +91,7 @@ const VagaTable: React.FC<TableHospedeProps> = ({ data, onDelete, onAlter }) => 
       </Modal>
     </>
   )
+
 }
 
-export default VagaTable;
+export default ClienteTable;

@@ -8,6 +8,7 @@ import VagasPage from '../pages/Vagas'
 import UsuarioPage from '../pages/Usuario';
 import HomePage from './../pages/Home/HomePage';
 import ConsultaPage from '../pages/Consulta/ConsultaPage';
+import ClientePage from '../pages/Cliente';
 
 const Routes = () => {
    return (
@@ -20,6 +21,7 @@ const Routes = () => {
             <Route exact path="/vaga" component={VagasPage} />
             <Route exact path="/consulta" component={ConsultaPage} />
             <Route exact path="/usuario" component={UsuarioPage} />
+            <Route exact path="/cliente" component={ClientePage} />
 
          </LayoutContent>
       </Switch>

@@ -19,7 +19,8 @@ export class VeiculoStore {
       this._veiculo = {} as IVeiculo;
       this.error = undefined
       this.loading = true;
-      console.log("DATA")
+      console.log("PLACA")
+      console.log(placa)
       try {
          const { data } = await api.get<IVeiculo>(`/veiculos?placa=${placa}`);
          console.log("DATA")

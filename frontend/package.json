@@ -13,6 +13,7 @@
     "@types/react-dom": "^17.0.0",
     "@types/react-highlight-words": "^0.16.3",
     "antd": "^4.16.11",
+    "antd-mask-input": "^0.1.15",
     "axios": "^0.21.1",
     "caniuse-lite": "^1.0.30001252",
     "json-server": "^0.16.3",

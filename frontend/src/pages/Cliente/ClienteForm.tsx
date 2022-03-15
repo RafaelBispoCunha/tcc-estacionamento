@@ -1,9 +1,8 @@
 import React from 'react';
-import { Select } from 'antd';
 import { Form, Input, Button } from 'antd';
 import MaskedInput from 'antd-mask-input'
-
-const UsuarioForm: React.FC<any> = ({
+ 
+const ClienteForm: React.FC<any> = ({
   onSubmit = () => { },
   operation,
   defaultValues
@@ -21,7 +20,7 @@ const UsuarioForm: React.FC<any> = ({
       onFinish={onSubmit}
     >
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ display: 'flex', flexDirection: 'row', width: '75%' }}>
+        <div style={{ display: 'flex', flexDirection: 'row', width: '75%'}}>
           <Form.Item
             label="ID"
             name="id"
@@ -45,10 +44,10 @@ const UsuarioForm: React.FC<any> = ({
             label="CPF"
             name="cpf"
             initialValue={operation === 'UPDATE' ? defaultValues?.cpf : ''}
-            rules={[{ required: true, message: 'Informe o cpf!' }]}
+            rules={[{ required: true, message: 'Informe o CPF!' }]}
             style={{ width: 180 }}
           >
-            <MaskedInput mask="111.111.111-11" />
+            <MaskedInput mask="111.111.111-11"/>
           </Form.Item>
         </div>
 
@@ -68,59 +67,26 @@ const UsuarioForm: React.FC<any> = ({
             initialValue={operation === 'UPDATE' ? defaultValues?.telefone : ''}
             style={{ width: 180, marginRight: 20 }}
           >
-            <MaskedInput mask="(11)1111-1111" />
+            <MaskedInput mask="(11)1111-1111"/>
           </Form.Item>
-
           <Form.Item
             label="Celular"
             name="celular"
             initialValue={operation === 'UPDATE' ? defaultValues?.celular : ''}
-            rules={[{ required: true, message: 'Informe o celular!' }]}
+            rules={[{ required: true, message: 'Informe o número de celular!' }]}
             style={{ width: 180, marginRight: 20 }}
           >
-            <MaskedInput mask="(11)11111-1111" />
+            <MaskedInput mask="(11)11111-1111"/>
           </Form.Item>
 
 
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'row', width: '75%' }}>
-          <Form.Item
-            label="Nivel de Acesso"
-            name="nivelAcesso"
-            initialValue={operation === 'UPDATE' ? defaultValues?.nivelAcesso : ''}
-            rules={[{ required: true, message: 'Informe o nivel de acesso!' }]}
-            style={{ width: 230, marginRight: 20 }}
-          >
-            <Select>
-              <Select.Option value="ADMIN">Administrador</Select.Option >
-              <Select.Option value="NORMAL">Normal</Select.Option >
-            </Select>
-          </Form.Item>
-          <Form.Item
-            label="Senha"
-            name="senha"
-            initialValue={operation === 'UPDATE' ? defaultValues?.senha : ''}
-            rules={[{ required: true, message: 'Informe o senha!' }]}
-            style={{ width: 250, marginRight: 20 }}
-          >
-            <Input />
-          </Form.Item>
-
-          <Form.Item
-            label="Confirma Senha"
-            name="senha2"
-            rules={[{ required: true, message: 'Informe o senha!' }]}
-            style={{ width: 250 }}
-          >
-            <Input />
-          </Form.Item>
-        </div>
 
         <div style={{ display: 'flex', marginTop: 20 }}>
           <Form.Item>
             <Button type="primary" htmlType="submit" >Salvar</Button>
-            <Button type="primary" style={{ marginLeft: 20 }} danger>Excluir</Button>
+            <Button type="primary" style={{ marginLeft: 20}} danger>Excluir</Button>
           </Form.Item>
         </div>
       </div>
@@ -128,4 +94,4 @@ const UsuarioForm: React.FC<any> = ({
   )
 }
 
-export default UsuarioForm;
+export default ClienteForm;

@@ -40,8 +40,8 @@ const SaidaTable: React.FC<TableHospedeProps> = ({ data, onSelectedRow, selected
         placeholder="Buscar placa.."
         value={placa}
         onChange={e => {
-          const currValue = e.target.value;
-          setPlaca(currValue.toUpperCase());
+          const currValue = e.target.value.toUpperCase();
+          setPlaca(currValue);
           const filteredData = data?.filter(entry =>
             entry.placa?.includes(currValue)
           );

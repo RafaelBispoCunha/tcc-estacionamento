@@ -32,11 +32,14 @@ const SaidaPage = () => {
   }
 
   const onSelectedRow = (value: any) => {
-    alert(value)
-    entradaStore.getEntrada(value).then(e => {
-      setEntrada(entradaStore.entrada)
+    console.log('value')
+    console.log(value)
+    setEntrada(value)
       setVisible(!visible)
-    })
+    /*
+    entradaStore.getEntrada(value).then(e => {
+      
+    })*/
   }
 
   const showModal = (value: any) => {

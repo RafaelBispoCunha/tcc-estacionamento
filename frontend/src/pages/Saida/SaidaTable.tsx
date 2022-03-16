@@ -62,7 +62,7 @@ const SaidaTable: React.FC<TableHospedeProps> = ({
 
       }
     },
-    
+
     {
       title: 'Modelo',
       dataIndex: 'modelo',
@@ -85,7 +85,7 @@ const SaidaTable: React.FC<TableHospedeProps> = ({
       render: (value: any) => value
 
     },
-    
+
     {
       title: 'Usuário',
       dataIndex: 'usuario',
@@ -111,6 +111,7 @@ const SaidaTable: React.FC<TableHospedeProps> = ({
     <div>
 
       <Table
+        rowKey={(row: any) => row.id}
         columns={columns}
         dataSource={dataSource}
       />

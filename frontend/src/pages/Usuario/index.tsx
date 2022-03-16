@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Breadcrumb } from 'antd';
+import { Breadcrumb, message } from 'antd';
 import UsuarioForm from './UsuarioForm';
 import UsuarioTable from './UsuarioTable';
 import { useStoreContext } from '../../store/'
@@ -22,49 +22,64 @@ const UsuarioPage = () => {
   const onSubmit = (values: any) => {
 
     if (operation === 'CREATE') {
-      usuarioStore.postUsuario(values).then(response => {
-        usuarioStore.getUsuarios().then(response => {
-          setUsuarios(usuarioStore.usuarios)
-          setIsForm(false)
+      usuarioStore.postUsuario(values)
+        .then(response => {
+          usuarioStore.getUsuarios()
+            .then(response => {
+              setUsuarios(usuarioStore.usuarios)
+              setIsForm(false)
+              message.success('This is a success message');
+            })
         })
-      }).catch(e => {
-        console.log(e)
-        setUsuarios(undefined);
-      })
+        .catch(e => {
+          setUsuarios(undefined);
+          message.error('This is an error message')
+        })
     } else {
       usuarioStore.putUsuario(values).then(response => {
-        usuarioStore.getUsuarios().then(response => {
-          setUsuarios(usuarioStore.usuarios)
-
-        })
+        usuarioStore.getUsuarios()
+          .then(response => {
+            setUsuarios(usuarioStore.usuarios)
+          })
         setIsForm(false)
         setOperation('CREATE')
-      }).catch(e => {
-        setUsuarios(undefined);
+        message.success('This is a success message');
       })
+        .catch(e => {
+          setUsuarios(undefined);
+          message.error('This is an error message');
+        })
     }
   }
 
   const onDelete = (values: any) => {
-    usuarioStore.deleteUsuario(values).then(response => {
-      setIsForm(false);
-      usuarioStore.getUsuarios().then(response => {
-        setUsuarios(usuarioStore.usuarios)
-        setOperation('CREATE');
+    usuarioStore.deleteUsuario(values)
+      .then(response => {
+        setIsForm(false);
+        usuarioStore.getUsuarios()
+          .then(response => {
+            setUsuarios(usuarioStore.usuarios)
+            setOperation('CREATE');
+            message.success('This is a success message');
+          })
       })
-    }).catch(e => {
-      setUsuarios(undefined);
-    })
+      .catch(e => {
+        setUsuarios(undefined);
+        message.error('This is an error message');
+      })
   }
 
   const onAlter = (values: any) => {
     setOperation('UPDATE');
-    usuarioStore.getUsuario(values).then(response => {
-      setIsForm(true);
-      
-    }).catch(e => {
-      setUsuarios(undefined);
-    })
+    usuarioStore.getUsuario(values)
+      .then(response => {
+        setIsForm(true);
+        message.success('This is a success message');
+      })
+      .catch(e => {
+        setUsuarios(undefined);
+        message.error('This is an error message');
+      })
   }
 
   const form = isForm ?
@@ -84,6 +99,7 @@ const UsuarioPage = () => {
         <Breadcrumb.Item ><ButtonLink type="link" onClick={() => setIsForm(false)}>Usuário</ButtonLink></Breadcrumb.Item>
         <Breadcrumb.Item><ButtonLink type="link" onClick={() => setIsForm(true)}>Novo Usuário</ButtonLink></Breadcrumb.Item>
       </Breadcrumb>
+
       {form}
 
     </>

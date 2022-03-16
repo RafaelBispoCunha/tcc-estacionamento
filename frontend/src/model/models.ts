@@ -1,10 +1,3 @@
-export interface IVaga{
-   id?: number,
-   andar: number,
-   numeroVaga: number,
-   status:  boolean,
-}
-
 export interface IVeiculo{
    id?: number,
    placa: string,
@@ -14,16 +7,6 @@ export interface IVeiculo{
    anoFabricacao:number, 
    situacao: string,
 }
-
-/*
-export interface IEntrada{
-   id?: number;
-   veiculo: IVeiculo;
-   vaga: IVaga;
-   usuario: string;
-   dataHoraEntrada: string;
-}
-*/
 
 export interface IEntrada{
    id?: number;
@@ -36,9 +19,7 @@ export interface IEntrada{
 export interface ISaida{
    id?: number;
    veiculo: IVeiculo;
-   vaga: IVaga;
    usuario: string;
-   valor: string
    dataHoraSaida: string;
 }
 
@@ -51,13 +32,5 @@ export interface IUsuario{
    telefone: string;
    nivelAcesso: string;
    senha: string;
-   dataHoraCadastro: string;
-}
-export interface ICliente{
-   id?: number;
-   nome: string;
-   cpf: string;
-   email: string;
-   telefone: string;
    dataHoraCadastro: string;
 }

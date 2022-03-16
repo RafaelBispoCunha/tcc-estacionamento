@@ -17,13 +17,13 @@
       "nomeCondutor": "Teste",
       "veiculo": {
         "placa": "CAA-DHD",
-        "modelo": "Monza",
-        "marca": "Chevrolet",
-        "cor": "Vinho",
+        "modelo": "Toro",
+        "marca": "Fiat",
+        "cor": "vermelho",
         "anoFabricacao": "1996",
-        "situacao": "Nenhuma restrição"
+        "situacao": "OK"
       },
-      "id": 11
+      "id": 6
     },
     {
       "dataHoraEntrada": "01-01-2022",
@@ -31,13 +31,13 @@
       "nomeCondutor": "Teste",
       "veiculo": {
         "placa": "CAA-DHD",
-        "modelo": "Monza",
-        "marca": "Chevrolet",
-        "cor": "Vinho",
+        "modelo": "Toro",
+        "marca": "Fiat",
+        "cor": "vermelho",
         "anoFabricacao": "1996",
-        "situacao": "Nenhuma restrição"
+        "situacao": "OK"
       },
-      "id": 12
+      "id": 7
     },
     {
       "dataHoraEntrada": "01-01-2022",
@@ -45,41 +45,16 @@
       "nomeCondutor": "Teste",
       "veiculo": {
         "placa": "CAA-DHD",
-        "modelo": "Monza",
-        "marca": "Chevrolet",
-        "cor": "Vinho",
+        "modelo": "Toro",
+        "marca": "Fiat",
+        "cor": "vermelho",
         "anoFabricacao": "1996",
-        "situacao": "Nenhuma restrição"
+        "situacao": "OK"
       },
-      "id": 13
-    },
-    {
-      "dataHoraEntrada": "01-01-2022",
-      "usuario": "João",
-      "nomeCondutor": "Teste",
-      "veiculo": {
-        "placa": "CAA-DHD",
-        "modelo": "Monza",
-        "marca": "Chevrolet",
-        "cor": "Vinho",
-        "anoFabricacao": "1996",
-        "situacao": "Nenhuma restrição"
-      },
-      "id": 14
+      "id": 8
     }
   ],
   "usuario": [
-    {
-      "id": 1,
-      "nome": "João",
-      "cpf": "476.154.010-97",
-      "email": "joao@email.com.br",
-      "telefone": "1199999-9999",
-      "celular": "(11)11111-1111",
-      "nivelAcesso": "NORMAL",
-      "senha": "123456",
-      "senha2": "123456"
-    },
     {
       "id": 2,
       "nome": "Carlos",

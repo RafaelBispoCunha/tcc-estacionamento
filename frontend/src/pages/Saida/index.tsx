@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
-
-import { Breadcrumb, Spin } from 'antd';
+import { Breadcrumb, Spin, message } from 'antd';
 import SaidaTable from './SaidaTable';
-
 import { IEntrada } from '../../model/models'
 import { useStoreContext } from '../../store/'
 
 const SaidaPage = () => {
-
 
   const { entradaStore, saidaStore } = useStoreContext();
   const [visible, setVisible] = useState(false);
@@ -20,7 +17,7 @@ const SaidaPage = () => {
       .then(e => {
         setEntradas(entradaStore.entradas)
       })
-  },[entradaStore, setEntradas] )
+  }, [entradaStore, setEntradas])
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const searchData = () => {
@@ -30,28 +27,27 @@ const SaidaPage = () => {
       })
   }
 
-  
-
-
   const onSubmit = (values: IEntrada) => {
     setLoad(true)
-    console.log(values)
-    saidaStore.postSaida(values).then(e => {
-      setVisible(!visible)
-      entradaStore.deleteEntrada(values.id)
-      searchData()
-    })
+
+    saidaStore.postSaida(values)
+      .then(e => {
+        setVisible(!visible)
+        entradaStore.deleteEntrada(values.id)
+        searchData()
+       // message.success('This is a success message');
+      })
+      .catch((response => {
+        message.error('This is an error message');
+      }))
     setLoad(false)
   }
 
   const onSelectedRow = (value: any) => {
-    
+
     setEntrada(value)
     setVisible(!visible)
-    /*
-    entradaStore.getEntrada(value).then(e => {
-      
-    })*/
+  
   }
 
   const showModal = (value: any) => {

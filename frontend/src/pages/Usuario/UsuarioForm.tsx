@@ -1,9 +1,15 @@
 import React from 'react';
-import { Select } from 'antd';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Select } from 'antd';
 import MaskedInput from 'antd-mask-input'
 
-const UsuarioForm: React.FC<any> = ({
+interface IUsuarioFormProps {
+  onSubmit: (data: any) => void;
+  operation: string;
+  defaultValues?: any;
+}
+
+
+const UsuarioForm: React.FC<IUsuarioFormProps> = ({
   onSubmit = () => { },
   operation,
   defaultValues
@@ -32,6 +38,7 @@ const UsuarioForm: React.FC<any> = ({
           >
             <Input />
           </Form.Item>
+
           <Form.Item
             label="Nome"
             name="nome"
@@ -63,6 +70,7 @@ const UsuarioForm: React.FC<any> = ({
           >
             <Input type={'email'} />
           </Form.Item>
+
           <Form.Item
             label="Telefone"
             name="telefone"
@@ -86,6 +94,7 @@ const UsuarioForm: React.FC<any> = ({
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'row', width: '75%' }}>
+          
           <Form.Item
             label="Nivel de Acesso"
             name="nivelAcesso"
@@ -98,6 +107,7 @@ const UsuarioForm: React.FC<any> = ({
               <Select.Option value="NORMAL">Normal</Select.Option >
             </Select>
           </Form.Item>
+
           <Form.Item
             label="Senha"
             name="senha"
@@ -116,12 +126,12 @@ const UsuarioForm: React.FC<any> = ({
           >
             <Input />
           </Form.Item>
+
         </div>
 
         <div style={{ display: 'flex', marginTop: 20 }}>
           <Form.Item>
             <Button type="primary" htmlType="submit" >Salvar</Button>
-            <Button type="primary" style={{ marginLeft: 20 }} danger>Excluir</Button>
           </Form.Item>
         </div>
       </div>

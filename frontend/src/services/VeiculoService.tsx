@@ -7,10 +7,10 @@ class VeiculoService {
     }
 
    getAll() {
-      return api.get(`/estacionados`);
+      return api.get(`/veiculos`);
     }
    create(data: any) {
-      return api.post("/estacionados", data);
+      return api.post("/veiculos", data);
    }
    
   

@@ -20,8 +20,10 @@ export class EntradaStore {
    getEntradas = async () => {
       this._entradas = [];
       this.error = undefined
-      this.loading = true;
+      this.loading = true
+
       try {
+
          const { data } = await api.get<IEntrada[]>(`/entrada`);
          
          runInAction(() => {
@@ -41,7 +43,9 @@ export class EntradaStore {
       this._entrada =  {} as IEntrada;
       this.error = undefined
       this.loading = true;
+      
       try {
+
          const { data } = await api.get<IEntrada>(`/entrada?id=${id}`);
          
          runInAction(() => {
@@ -56,14 +60,15 @@ export class EntradaStore {
       }
    }
 
-
    @action
    postEntrada = async (params: IEntrada) => {
       this.error = undefined
       this.loading = true;
+      
       try {
          
          await api.post(`/entrada`, params)
+
          runInAction(() => {
             this.loading = false;
          })

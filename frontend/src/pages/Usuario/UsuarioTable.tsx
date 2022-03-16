@@ -76,6 +76,7 @@ const UsuarioTable: React.FC<TableFuncionarioProps> = ({
   return (
     <>
       <Table
+        rowKey={(row: any) => row.id}
         columns={columns}
         dataSource={data}
       />
